@@ -16,7 +16,7 @@ To install system-wide (needs administrator privilages)::
    python setup.py install
 
 To install locally (do not forget to add
-``$HOME/python/lib/python2.6/site-packages/`` to your Python path):
+``$HOME/python/lib/python2.6/site-packages/`` to your Python path)::
 
    python setup.py install --user
 
