@@ -11,6 +11,23 @@ See a `blog post <http://neuroscience.telenczuk.pl/?p=331>`_  for a short tutori
 Install
 -------
 
+From PyPI
+`````````
+
+You can install `svgutils` from Python Package Index (PyPI) using the `pip` utility::
+
+   pip install svgutils --user
+
+Note that the `pip` will attempt to install `lxml` library if it is not already installed.
+For the installation to be sucessful, you need development libraries of `libxml2` and `libxslt1`.
+On Ubuntu and other Debian-derived Linux distributions you can install them via::
+
+   sudo apt-get install libxml2-dev libxslt-dev
+
+
+From sources
+````````````
+
 To install system-wide (needs administrator privilages)::
 
    python setup.py install
