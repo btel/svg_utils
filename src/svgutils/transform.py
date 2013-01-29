@@ -56,7 +56,7 @@ class SVGFigure(object):
         if width or height:
             self.root.set("width", width)
             self.root.set("height",  height)
-            self.root.set(“viewbox”, "0 0 %s %s" % (width, height))
+            self.root.set("viewbox", "0 0 %s %s" % (width, height))
     def append(self,element):
         try:
             self.root.append(element.root)
