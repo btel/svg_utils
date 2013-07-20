@@ -65,6 +65,11 @@ class SVGFigure(object):
 
     def getroot(self):
         return GroupElement(self.root.getchildren())
+        
+    def save_to_str(self):
+        return etree.tostring(self.root, xml_declaration=True, 
+                standalone=True,pretty_print=True)    
+
     def save(self, fname):
         out=etree.tostring(self.root, xml_declaration=True, 
                 standalone=True,pretty_print=True)
