@@ -65,6 +65,15 @@ class SVGFigure(object):
 
     def getroot(self):
         return GroupElement(self.root.getchildren())
+        
+    def to_str(self):
+        """
+        Returns a string of the svg image 
+        """
+        return etree.tostring(self.root, xml_declaration=True, 
+                standalone=True,pretty_print=True)    
+ 
+
     def save(self, fname):
         out=etree.tostring(self.root, xml_declaration=True, 
                 standalone=True,pretty_print=True)
