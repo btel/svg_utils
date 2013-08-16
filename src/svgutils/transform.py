@@ -1,7 +1,10 @@
 from lxml import etree
 from copy import deepcopy
 import re
-from StringIO import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 SVG_NAMESPACE = "http://www.w3.org/2000/svg"
 SVG = "{%s}" % SVG_NAMESPACE
@@ -77,7 +80,7 @@ class SVGFigure(object):
     def save(self, fname):
         out=etree.tostring(self.root, xml_declaration=True, 
                 standalone=True,pretty_print=True)
-        fid = file(fname, 'w')
+        fid = open(fname, 'wb')
         fid.write(out)
         fid.close()
     
@@ -117,7 +120,7 @@ def from_mpl(fig):
     try:
         fig.savefig(fid, format='svg')
     except ValueError:
-        raise ValueError, "No matplotlib SVG backend"
+        raise(ValueError, "No matplotlib SVG backend")
     fid.seek(0)
     fig =  fromstring(fid.read())
 
