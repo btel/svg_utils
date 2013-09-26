@@ -6,6 +6,8 @@ try:
 except ImportError:
     from io import StringIO
 
+import util
+
 SVG_NAMESPACE = "http://www.w3.org/2000/svg"
 SVG = "{%s}" % SVG_NAMESPACE
 NSMAP = {None : SVG_NAMESPACE}
@@ -54,6 +56,12 @@ class GroupElement(FigureElement):
 
 class SVGFigure(object):
     def __init__(self, width=None, height=None):
+        # create a unique id
+        if not hasattr(SVGFigure, 'maxid'):
+            SVGFigure.maxid = 0
+        self.id = SVGFigure.maxid + 1
+        SVGFigure.maxid = self.id
+
         self.root = etree.Element(SVG+"svg",nsmap=NSMAP)
         self.root.set("version", "1.1")
         if width or height:
@@ -96,13 +104,19 @@ class SVGFigure(object):
         self.root.set('width', w)
         self.root.set('height', h)
 
-def fromfile(fname):
+def fromfile(fname, idprefix=None):
     fig = SVGFigure()
     fid = open(fname)
     svg_file = etree.parse(fid)
     fid.close()
+    
+    # make id's unique in order to avoid clashes
+    if idprefix is None:
+        idprefix = 'inst%d_' % fig.id
+    fig_root = util.svg_id_prepend(svg_file.getroot(), prefix=idprefix)
 
-    fig.root = svg_file.getroot() 
+    fig.root = fig_root
+
     return fig
 
 def fromstring(text):
