@@ -47,7 +47,7 @@ class ColumnLayout(BaseTemplate):
 
         self.nrows = nrows
         self.col_width = col_width
-        self.row_width = row_height
+        self.row_height = row_height
 
         BaseTemplate.__init__(self)
 
@@ -64,7 +64,7 @@ class ColumnLayout(BaseTemplate):
         
         if self.col_width is None:
             self.col_width = transform_list[0]['width']
-        if self.row_width is None:
+        if self.row_height is None:
             self.row_height = transform_list[0]['height']
 
         for i in range(rows):
