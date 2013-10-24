@@ -13,8 +13,8 @@ NSMAP = {None : SVG_NAMESPACE}
 class FigureElement(object):
 
     def __init__(self, xml_element, defs=None):
-        
-        self.root = xml_element 
+
+        self.root = xml_element
 
     def moveto(self, x, y, scale=1):
         self.root.set("transform", "%s translate(%s, %s) scale(%s)" %
@@ -34,10 +34,10 @@ class FigureElement(object):
 
 class TextElement(FigureElement):
     def __init__(self, x, y, text, size=8, font="Verdana",
-            weight="normal"):
+            weight="normal", letterspacing=0):
         txt = etree.Element(SVG+"text", {"x": str(x), "y": str(y),
             "font-size":str(size), "font-family": font,
-            "font-weight": weight})
+            "font-weight": weight, "letter-spacing": str(letterspacing)})
         txt.text = text
         FigureElement.__init__(self, txt)
 
@@ -68,29 +68,29 @@ class SVGFigure(object):
 
     def getroot(self):
         return GroupElement(self.root.getchildren())
-        
+
     def to_str(self):
         """
-        Returns a string of the svg image 
+        Returns a string of the svg image
         """
-        return etree.tostring(self.root, xml_declaration=True, 
-                standalone=True,pretty_print=True)    
- 
+        return etree.tostring(self.root, xml_declaration=True,
+                standalone=True,pretty_print=True)
+
 
     def save(self, fname):
-        out=etree.tostring(self.root, xml_declaration=True, 
+        out=etree.tostring(self.root, xml_declaration=True,
                 standalone=True,pretty_print=True)
         fid = open(fname, 'wb')
         fid.write(out)
         fid.close()
-    
+
     def find_id(self, element_id):
         find = etree.XPath("//*[@id=$id]")
         return FigureElement(find(self.root, id=element_id)[0])
 
     def get_size(self):
         return self.root.get('width'), self.root.get('height')
-    
+
     def set_size(self, size):
         w, h = size
         self.root.set('width', w)
@@ -102,7 +102,7 @@ def fromfile(fname):
     svg_file = etree.parse(fid)
     fid.close()
 
-    fig.root = svg_file.getroot() 
+    fig.root = svg_file.getroot()
     return fig
 
 def fromstring(text):
