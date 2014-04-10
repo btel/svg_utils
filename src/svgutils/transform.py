@@ -42,8 +42,8 @@ class TextElement(FigureElement):
         FigureElement.__init__(self, txt)
 
 class GroupElement(FigureElement):
-    def __init__(self, element_list):
-        new_group = etree.Element(SVG+"g")
+    def __init__(self, element_list, attrib=None):
+        new_group = etree.Element(SVG+"g", attrib=attrib)
         for e in element_list:
             if isinstance(e, FigureElement):
                 new_group.append(e.root)
@@ -67,7 +67,11 @@ class SVGFigure(object):
             self.root.append(GroupElement(element).root)
 
     def getroot(self):
-        return GroupElement(self.root.getchildren())
+        if 'class' in self.root.attrib:
+            attrib = {'class' : self.root.attrib['class']}
+        else:
+            attrib = None
+        return GroupElement(self.root.getchildren(), attrib=attrib)
 
     def to_str(self):
         """
