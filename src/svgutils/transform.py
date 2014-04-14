@@ -31,6 +31,9 @@ class FigureElement(object):
     def copy(self):
         return deepcopy(self.root)
 
+    def tostr(self):
+        return etree.tostring(self.root, pretty_print=True)
+
 
 class TextElement(FigureElement):
     def __init__(self, x, y, text, size=8, font="Verdana",
@@ -56,10 +59,29 @@ class SVGFigure(object):
     def __init__(self, width=None, height=None):
         self.root = etree.Element(SVG+"svg",nsmap=NSMAP)
         self.root.set("version", "1.1")
-        if width or height:
-            self.root.set("width", width)
-            self.root.set("height",  height)
-            self.root.set("viewbox", "0 0 %s %s" % (width, height))
+        if width:
+            self.width = width
+        if height:
+            self.height = height
+
+    @property
+    def width(self):
+        return self.root.get("width")
+
+    @width.setter
+    def width(self, value):
+        self.root.set('width', value)
+        self.root.set("viewbox", "0 0 %s %s" % (self.width, self.height))
+
+    @property
+    def height(self):
+        return self.root.get("height")
+
+    @height.setter
+    def height(self, value):
+        self.root.set('height', value)
+        self.root.set("viewbox", "0 0 %s %s" % (self.width, self.height))
+    
     def append(self,element):
         try:
             self.root.append(element.root)
