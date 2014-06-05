@@ -44,6 +44,17 @@ class TextElement(FigureElement):
         txt.text = text
         FigureElement.__init__(self, txt)
 
+class LineElement(FigureElement):
+    def __init__(self, points, width=1, color='black'):
+        linedata = "M{} {} ".format(*points[0])
+        linedata += " ".join(map(lambda x: "L{} {}".format(*x), points[1:]))
+        line = etree.Element(SVG+"path", 
+                {"d": linedata, 
+                 "stroke-width":str(width),
+                 "stroke" : color}) 
+        FigureElement.__init__(self, line)
+
+
 class GroupElement(FigureElement):
     def __init__(self, element_list, attrib=None):
         new_group = etree.Element(SVG+"g", attrib=attrib)
