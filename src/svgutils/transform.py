@@ -7,8 +7,11 @@ except ImportError:
     from io import StringIO
 
 SVG_NAMESPACE = "http://www.w3.org/2000/svg"
+XLINK_NAMESPACE = "http://www.w3.org/1999/xlink"
 SVG = "{%s}" % SVG_NAMESPACE
-NSMAP = {None : SVG_NAMESPACE}
+XLINK = "{%s}" % XLINK_NAMESPACE
+NSMAP = {None : SVG_NAMESPACE,
+         'xlink' : XLINK_NAMESPACE}
 
 class FigureElement(object):
 
@@ -40,6 +43,18 @@ class TextElement(FigureElement):
             "font-weight": weight, "letter-spacing": str(letterspacing)})
         txt.text = text
         FigureElement.__init__(self, txt)
+
+class ImageElement(FigureElement):
+    def __init__(self, stream, width, height, format='png'):
+        base64str = stream.read().encode('base64').replace('\n','')
+        uri = "data:image/{};base64,{}".format(format, base64str)
+        attrs = {
+                'width': str(width),
+                'height' : str(height),
+                XLINK+'href' : uri
+                }
+        img = etree.Element(SVG+"image", attrs)
+        FigureElement.__init__(self, img)
 
 class GroupElement(FigureElement):
     def __init__(self, element_list):
