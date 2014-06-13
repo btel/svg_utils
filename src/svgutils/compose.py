@@ -18,6 +18,7 @@ ToDo:
 
 from svgutils import transform as _transform
 CONFIG = {'svg.file_path' : '.',
+          'image.file_path' : '.',
           'text.size' : 8,
           'text.weight' : 'normal',
           'text.font' : 'Verdana'}
@@ -41,7 +42,8 @@ class SVG(_Element):
 
 class Image(_Element):
 
-    def __init__(self, fname, width, height):
+    def __init__(self, width, height, fname):
+        fname = os.path.join(CONFIG['image.file_path'], fname) 
         _, fmt = os.path.splitext(fname)
         fmt = fmt.lower()[1:]
         with open(fname, 'rb') as fid:
