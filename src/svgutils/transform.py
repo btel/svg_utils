@@ -95,7 +95,7 @@ class SVGFigure(object):
 
     @width.setter
     def width(self, value):
-        self.root.set('width', value)
+        self.root.set('width', str(value))
         self.root.set("viewbox", "0 0 %s %s" % (self.width, self.height))
 
     @property
@@ -104,7 +104,7 @@ class SVGFigure(object):
 
     @height.setter
     def height(self, value):
-        self.root.set('height', value)
+        self.root.set('height', str(value))
         self.root.set("viewbox", "0 0 %s %s" % (self.width, self.height))
     
     def append(self,element):

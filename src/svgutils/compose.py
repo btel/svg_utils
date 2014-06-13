@@ -19,10 +19,12 @@ ToDo:
 from svgutils import transform as _transform
 CONFIG = {'svg.file_path' : '.',
           'image.file_path' : '.',
+          'text.position': (0, 0),
           'text.size' : 8,
           'text.weight' : 'normal',
           'text.font' : 'Verdana'}
 import os 
+import re
 
 class _Element(_transform.FigureElement):
     def scale(self, factor):
@@ -51,10 +53,12 @@ class Image(_Element):
         self.root = img.root
 
 class Text(_Element):
-    def __init__(self, text, x, y, **kwargs):
+    def __init__(self, text, x=None, y=None, **kwargs):
         params = {'size'   : CONFIG['text.size'],
                   'weight' : CONFIG['text.weight'],
                   'font'   : CONFIG['text.font']}
+        if x is None or y is None:
+            x, y = CONFIG['text.position']
         params.update(kwargs)
         element = _transform.TextElement(x, y, text, **params)
         self.root = element.root
@@ -63,6 +67,12 @@ class Panel(_Element):
     def __init__(self, *svgelements):
         element = _transform.GroupElement(svgelements)
         self.root = element.root
+
+    def __iter__(self):
+        elements = self.root.getchildren()
+        return (_Element(el) for el in elements)
+
+
 
 class Line(_Element):
     def __init__(self, points, width=1, color='black'):
@@ -94,12 +104,49 @@ class Grid(_Element):
 class Figure(Panel):
     def __init__(self, width, height, *svgelements):
         Panel.__init__(self, *svgelements)
-        self.width = width
-        self.height = height
+        self.width = Unit(width)
+        self.height = Unit(height)
     def save(self, fname):
         element = _transform.SVGFigure(self.width, self.height)
         element.append(self)
         element.save(fname)
 
+    def tile(self, ncols, nrows):
+        dx = (self.width/ncols).to('px').value
+        dy = (self.height/nrows).to('px').value
+        ix, iy = 0,0
+        for el in self:
+            el.move(dx*ix, dy*iy)
+            ix += 1
+            if ix >= ncols:
+                ix = 0
+                iy += 1
+            if iy > nrows:
+                break
+        return self
 
+class Unit:
+    per_inch = {'px': 90,
+                'cm' : 2.54}
+    def __init__(self, measure):
+        m = re.match('([0-9]+)([a-z]+)', measure)
+        value, unit = m.groups()
+        self.value = float(value)
+        self.unit = unit
+
+    def to(self, unit):
+        u = Unit("0cm")
+        u.value = self.value/self.per_inch[self.unit]*self.per_inch[unit]
+        u.unit = unit
+        return u
         
+    def __str__(self):
+        return "{}{}".format(self.value, self.unit)
+    def __mul__(self, number):
+        u = Unit("0cm")
+        u.value = self.value*number
+        u.unit = self.unit
+        return u
+    def __div__(self, number):
+        return self * (1./number)
+
