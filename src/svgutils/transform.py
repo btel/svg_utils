@@ -34,6 +34,9 @@ class FigureElement(object):
     def copy(self):
         return deepcopy(self.root)
 
+    def tostr(self):
+        return etree.tostring(self.root, pretty_print=True)
+
 
 class TextElement(FigureElement):
     def __init__(self, x, y, text, size=8, font="Verdana",
@@ -56,9 +59,19 @@ class ImageElement(FigureElement):
         img = etree.Element(SVG+"image", attrs)
         FigureElement.__init__(self, img)
 
+class LineElement(FigureElement):
+    def __init__(self, points, width=1, color='black'):
+        linedata = "M{} {} ".format(*points[0])
+        linedata += " ".join(map(lambda x: "L{} {}".format(*x), points[1:]))
+        line = etree.Element(SVG+"path", 
+                {"d": linedata, 
+                 "stroke-width":str(width),
+                 "stroke" : color}) 
+        FigureElement.__init__(self, line)
+
 class GroupElement(FigureElement):
-    def __init__(self, element_list):
-        new_group = etree.Element(SVG+"g")
+    def __init__(self, element_list, attrib=None):
+        new_group = etree.Element(SVG+"g", attrib=attrib)
         for e in element_list:
             if isinstance(e, FigureElement):
                 new_group.append(e.root)
@@ -71,10 +84,29 @@ class SVGFigure(object):
     def __init__(self, width=None, height=None):
         self.root = etree.Element(SVG+"svg",nsmap=NSMAP)
         self.root.set("version", "1.1")
-        if width or height:
-            self.root.set("width", width)
-            self.root.set("height",  height)
-            self.root.set("viewbox", "0 0 %s %s" % (width, height))
+        if width:
+            self.width = width
+        if height:
+            self.height = height
+
+    @property
+    def width(self):
+        return self.root.get("width")
+
+    @width.setter
+    def width(self, value):
+        self.root.set('width', value)
+        self.root.set("viewbox", "0 0 %s %s" % (self.width, self.height))
+
+    @property
+    def height(self):
+        return self.root.get("height")
+
+    @height.setter
+    def height(self, value):
+        self.root.set('height', value)
+        self.root.set("viewbox", "0 0 %s %s" % (self.width, self.height))
+    
     def append(self,element):
         try:
             self.root.append(element.root)
@@ -82,7 +114,11 @@ class SVGFigure(object):
             self.root.append(GroupElement(element).root)
 
     def getroot(self):
-        return GroupElement(self.root.getchildren())
+        if 'class' in self.root.attrib:
+            attrib = {'class' : self.root.attrib['class']}
+        else:
+            attrib = None
+        return GroupElement(self.root.getchildren(), attrib=attrib)
 
     def to_str(self):
         """
