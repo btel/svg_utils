@@ -35,7 +35,7 @@ class FigureElement(object):
         return etree.tostring(self.root, pretty_print=True)
 
 class RectElement(FigureElement):
-    def __init__(self, x, y, width=25, height=25, fill=None, id=None):
+    def __init__(self, x, y, width=25, height=25, fill='#FFFFFF', id='rect'):
         rect = etree.Element(SVG+"rect", {"x": str(x), "y": str(y),
             "width":str(width), 
             "height":str(height), 
@@ -46,10 +46,11 @@ class RectElement(FigureElement):
 
 class TextElement(FigureElement):
     def __init__(self, x, y, text, size=8, font="Verdana",
-            weight="normal", letterspacing=0, anchor='start', id=None):
+            weight="normal", letterspacing=0, anchor='start', id='text'):
         txt = etree.Element(SVG+"text", {"x": str(x), "y": str(y),
             "font-size":str(size), "font-family": font,
             "font-weight": weight,
+            "letter-spacing": str(letterspacing),
             "text-anchor": str(anchor),
             "id":str(id),
             })
