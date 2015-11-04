@@ -1,6 +1,7 @@
 from lxml import etree
 from copy import deepcopy
-import re
+import codecs
+
 try:
     from StringIO import StringIO
 except ImportError:
@@ -45,12 +46,12 @@ class TextElement(FigureElement):
             "font-size":str(size), "font-family": font,
             "font-weight": weight, "letter-spacing": str(letterspacing)})
         txt.text = text
-        FigureElement.__init__(self, txt)
+
 
 class ImageElement(FigureElement):
     def __init__(self, stream, width, height, format='png'):
-        base64str = stream.read().encode('base64').replace('\n','')
-        uri = "data:image/{};base64,{}".format(format, base64str)
+        base64str = codecs.encode(stream.read(), 'base64').rstrip()
+        uri = "data:image/{};base64,{}".format(format, base64str.decode('ascii'))
         attrs = {
                 'width': str(width),
                 'height' : str(height),

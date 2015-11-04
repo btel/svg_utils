@@ -35,12 +35,14 @@ class _Element(_transform.FigureElement):
         self.moveto(x,y,1)
         return self
 
+
 class SVG(_Element):
 
     def __init__(self, fname):
         fname = os.path.join(CONFIG['svg.file_path'], fname) 
         svg = _transform.fromfile(fname)
         self.root = svg.getroot().root
+
 
 class Image(_Element):
 
@@ -52,6 +54,7 @@ class Image(_Element):
             img = _transform.ImageElement(fid, width, height, fmt)
         self.root = img.root
 
+
 class Text(_Element):
     def __init__(self, text, x=None, y=None, **kwargs):
         params = {'size'   : CONFIG['text.size'],
@@ -61,12 +64,14 @@ class Text(_Element):
             x, y = CONFIG['text.position']
         params.update(kwargs)
         element = _transform.TextElement(x, y, text, **params)
-        self.root = element.root
+        _Element.__init__(self, element.root)
+
 
 class Panel(_Element):
     def __init__(self, *svgelements):
         element = _transform.GroupElement(svgelements)
-        self.root = element.root
+        _Element.__init__(self, element.root)
+
 
     def __iter__(self):
         elements = self.root.getchildren()
@@ -77,14 +82,14 @@ class Panel(_Element):
 class Line(_Element):
     def __init__(self, points, width=1, color='black'):
         element = _transform.LineElement(points, width=width, color=color)
-        self.root = element.root
+        _Element.__init__(self, element.root)
 
 class Grid(_Element):
     def __init__(self, dx, dy, size=8):
         self.size = size
         lines = self._gen_grid(dx, dy)
         element = _transform.GroupElement(lines)
-        self.root = element.root
+        _Element.__init__(self, element.root)
 
     def _gen_grid(self, dx, dy, width=0.5):
         xmax, ymax = 1000, 1000
