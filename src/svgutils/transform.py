@@ -46,6 +46,7 @@ class TextElement(FigureElement):
             "font-size":str(size), "font-family": font,
             "font-weight": weight, "letter-spacing": str(letterspacing)})
         txt.text = text
+        FigureElement.__init__(self, txt)
 
 
 class ImageElement(FigureElement):

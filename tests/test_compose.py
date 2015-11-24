@@ -19,3 +19,11 @@ def test_embedded_image():
 
     ok_(lion_jpg_md5 == md5)
 
+def test_text():
+
+    fig = Figure("5cm", "5cm",
+                 Text('lion')
+                 )
+    txt = fig.root.find(SVG+'text')
+
+    ok_(txt.text=='lion')
