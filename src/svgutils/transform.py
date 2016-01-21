@@ -38,6 +38,10 @@ class FigureElement(object):
     def tostr(self):
         return etree.tostring(self.root, pretty_print=True)
 
+    def find_id(self, element_id):
+        find = etree.XPath("//*[@id=$id]")
+        return FigureElement(find(self.root, id=element_id)[0])
+
 
 class TextElement(FigureElement):
     def __init__(self, x, y, text, size=8, font="Verdana",
@@ -65,10 +69,10 @@ class LineElement(FigureElement):
     def __init__(self, points, width=1, color='black'):
         linedata = "M{} {} ".format(*points[0])
         linedata += " ".join(map(lambda x: "L{} {}".format(*x), points[1:]))
-        line = etree.Element(SVG+"path", 
-                {"d": linedata, 
+        line = etree.Element(SVG+"path",
+                {"d": linedata,
                  "stroke-width":str(width),
-                 "stroke" : color}) 
+                 "stroke" : color})
         FigureElement.__init__(self, line)
 
 class GroupElement(FigureElement):
@@ -108,7 +112,7 @@ class SVGFigure(object):
     def height(self, value):
         self.root.set('height', str(value))
         self.root.set("viewbox", "0 0 %s %s" % (self.width, self.height))
-    
+
     def append(self,element):
         try:
             self.root.append(element.root)
