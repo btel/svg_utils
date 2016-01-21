@@ -6,12 +6,15 @@
 Welcome to svgutils's documentation!
 ====================================
 
-Contents:
+Contents
+========
 
 .. toctree::
+   :numbered:
    :maxdepth: 2
 
-   tutorial/tutorial.rst
+   tutorials
+   reference
 
 Indices and tables
 ==================
@@ -19,4 +22,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

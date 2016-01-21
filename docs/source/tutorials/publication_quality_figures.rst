@@ -1,13 +1,13 @@
 .. title:: svgutils tutorial
 
-===================================================================
-Creating plublication-quality figures using matplotlib and svgutils
-===================================================================
+=====================================
+Creating plublication-quality figures
+=====================================
 
 `Matplotlib <http://matplotlib.sf.net>`_ is a decent Python library
 for creating publication-quality plots which offers a multitude of
 different plot types. However, one limitation of ``matplotlib`` is that
-creating complex layouts can be at times complicated. Therefore, 
+creating complex layouts can be at times complicated. Therefore,
 post-processing of plots is usually done in some other vector graphics
 editor such as `inkscape <http://inkscape.org/>`_ or Adobe
 Illustrator. The typical workflow is as following:
@@ -43,7 +43,7 @@ which completely resides on Python tools.
       :scale: 70 %
 
       ``anscombe.py``
-      
+
 2. *Export to SVG*
 
    A nice feature of matplotlib is that it allows to export figure to

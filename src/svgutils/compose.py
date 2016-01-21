@@ -29,8 +29,20 @@ CONFIG = {'svg.file_path': '.',
           'text.font': 'Verdana'}
 
 
-class _Element(_transform.FigureElement):
+class Element(_transform.FigureElement):
+    """Base class for new SVG elements."""
+
     def scale(self, factor):
+        """Scale SVG element.
+
+        Arguments
+        ---------
+        factor : float
+            The scaling factor.
+
+            Factor > 1 scales up, factor < 1 scales down.
+        """
+
         self.moveto(0, 0, factor)
         return self
 
@@ -40,7 +52,7 @@ class _Element(_transform.FigureElement):
 
     def find_id(self, element_id):
         element = _transform.FigureElement.find_id(self, element_id)
-        return _Element(element.root)
+        return Element(element.root)
 
     def find_ids(self, element_ids):
         elements = [_transform.FigureElement.find_id(self, eid)
@@ -48,7 +60,14 @@ class _Element(_transform.FigureElement):
         return Panel(*elements)
 
 
-class SVG(_Element):
+class SVG(Element):
+    """Insert SVG from file.
+
+    Arguments
+    ---------
+    fname : str
+       name of the file
+    """
 
     def __init__(self, fname):
         fname = os.path.join(CONFIG['svg.file_path'], fname)
@@ -56,7 +75,7 @@ class SVG(_Element):
         self.root = svg.getroot().root
 
 
-class Image(_Element):
+class Image(Element):
 
     def __init__(self, width, height, fname):
         fname = os.path.join(CONFIG['image.file_path'], fname)
@@ -67,7 +86,7 @@ class Image(_Element):
         self.root = img.root
 
 
-class Text(_Element):
+class Text(Element):
     def __init__(self, text, x=None, y=None, **kwargs):
         params = {'size': CONFIG['text.size'],
                   'weight': CONFIG['text.weight'],
@@ -76,31 +95,31 @@ class Text(_Element):
             x, y = CONFIG['text.position']
         params.update(kwargs)
         element = _transform.TextElement(x, y, text, **params)
-        _Element.__init__(self, element.root)
+        Element.__init__(self, element.root)
 
 
-class Panel(_Element):
+class Panel(Element):
     def __init__(self, *svgelements):
         element = _transform.GroupElement(svgelements)
-        _Element.__init__(self, element.root)
+        Element.__init__(self, element.root)
 
     def __iter__(self):
         elements = self.root.getchildren()
-        return (_Element(el) for el in elements)
+        return (Element(el) for el in elements)
 
 
-class Line(_Element):
+class Line(Element):
     def __init__(self, points, width=1, color='black'):
         element = _transform.LineElement(points, width=width, color=color)
-        _Element.__init__(self, element.root)
+        Element.__init__(self, element.root)
 
 
-class Grid(_Element):
+class Grid(Element):
     def __init__(self, dx, dy, size=8):
         self.size = size
         lines = self._gen_grid(dx, dy)
         element = _transform.GroupElement(lines)
-        _Element.__init__(self, element.root)
+        Element.__init__(self, element.root)
 
     def _gen_grid(self, dx, dy, width=0.5):
         xmax, ymax = 1000, 1000
