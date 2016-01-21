@@ -11,23 +11,22 @@ SVG_NAMESPACE = "http://www.w3.org/2000/svg"
 XLINK_NAMESPACE = "http://www.w3.org/1999/xlink"
 SVG = "{%s}" % SVG_NAMESPACE
 XLINK = "{%s}" % XLINK_NAMESPACE
-NSMAP = {None : SVG_NAMESPACE,
-         'xlink' : XLINK_NAMESPACE}
+NSMAP = {None: SVG_NAMESPACE,
+         'xlink': XLINK_NAMESPACE}
+
 
 class FigureElement(object):
-
     def __init__(self, xml_element, defs=None):
 
         self.root = xml_element
 
     def moveto(self, x, y, scale=1):
         self.root.set("transform", "%s translate(%s, %s) scale(%s)" %
-                (self.root.get("transform") or '', x,y, scale))
+                      (self.root.get("transform") or '', x, y, scale))
 
     def rotate(self, angle, x=0, y=0):
         self.root.set("transform", "%s rotate(%f %f %f)" %
-                (self.root.get("transform") or '', angle,x, y))
-
+                      (self.root.get("transform") or '', angle, x, y))
 
     def __getitem__(self, i):
         return FigureElement(self.root.getchildren()[i])
@@ -45,10 +44,12 @@ class FigureElement(object):
 
 class TextElement(FigureElement):
     def __init__(self, x, y, text, size=8, font="Verdana",
-            weight="normal", letterspacing=0):
+                 weight="normal", letterspacing=0):
         txt = etree.Element(SVG+"text", {"x": str(x), "y": str(y),
-            "font-size":str(size), "font-family": font,
-            "font-weight": weight, "letter-spacing": str(letterspacing)})
+                                         "font-size": str(size),
+                                         "font-family": font,
+                                         "font-weight": weight,
+                                         "letter-spacing": str(letterspacing)})
         txt.text = text
         FigureElement.__init__(self, txt)
 
@@ -56,24 +57,27 @@ class TextElement(FigureElement):
 class ImageElement(FigureElement):
     def __init__(self, stream, width, height, format='png'):
         base64str = codecs.encode(stream.read(), 'base64').rstrip()
-        uri = "data:image/{};base64,{}".format(format, base64str.decode('ascii'))
+        uri = "data:image/{};base64,{}".format(format,
+                                               base64str.decode('ascii'))
         attrs = {
                 'width': str(width),
-                'height' : str(height),
-                XLINK+'href' : uri
+                'height': str(height),
+                XLINK+'href': uri
                 }
         img = etree.Element(SVG+"image", attrs)
         FigureElement.__init__(self, img)
+
 
 class LineElement(FigureElement):
     def __init__(self, points, width=1, color='black'):
         linedata = "M{} {} ".format(*points[0])
         linedata += " ".join(map(lambda x: "L{} {}".format(*x), points[1:]))
         line = etree.Element(SVG+"path",
-                {"d": linedata,
-                 "stroke-width":str(width),
-                 "stroke" : color})
+                             {"d": linedata,
+                              "stroke-width": str(width),
+                              "stroke": color})
         FigureElement.__init__(self, line)
+
 
 class GroupElement(FigureElement):
     def __init__(self, element_list, attrib=None):
@@ -88,7 +92,7 @@ class GroupElement(FigureElement):
 
 class SVGFigure(object):
     def __init__(self, width=None, height=None):
-        self.root = etree.Element(SVG+"svg",nsmap=NSMAP)
+        self.root = etree.Element(SVG+"svg", nsmap=NSMAP)
         self.root.set("version", "1.1")
         if width:
             self.width = width
@@ -113,7 +117,7 @@ class SVGFigure(object):
         self.root.set('height', str(value))
         self.root.set("viewbox", "0 0 %s %s" % (self.width, self.height))
 
-    def append(self,element):
+    def append(self, element):
         try:
             self.root.append(element.root)
         except AttributeError:
@@ -121,7 +125,7 @@ class SVGFigure(object):
 
     def getroot(self):
         if 'class' in self.root.attrib:
-            attrib = {'class' : self.root.attrib['class']}
+            attrib = {'class': self.root.attrib['class']}
         else:
             attrib = None
         return GroupElement(self.root.getchildren(), attrib=attrib)
@@ -131,12 +135,13 @@ class SVGFigure(object):
         Returns a string of the svg image
         """
         return etree.tostring(self.root, xml_declaration=True,
-                standalone=True,pretty_print=True)
-
+                              standalone=True,
+                              pretty_print=True)
 
     def save(self, fname):
-        out=etree.tostring(self.root, xml_declaration=True,
-                standalone=True,pretty_print=True)
+        out = etree.tostring(self.root, xml_declaration=True,
+                             standalone=True,
+                             pretty_print=True)
         fid = open(fname, 'wb')
         fid.write(out)
         fid.close()
@@ -153,6 +158,7 @@ class SVGFigure(object):
         self.root.set('width', w)
         self.root.set('height', h)
 
+
 def fromfile(fname):
     fig = SVGFigure()
     fid = open(fname)
@@ -162,6 +168,7 @@ def fromfile(fname):
     fig.root = svg_file.getroot()
     return fig
 
+
 def fromstring(text):
     fig = SVGFigure()
     svg = etree.fromstring(text)
@@ -169,6 +176,7 @@ def fromstring(text):
     fig.root = svg
 
     return fig
+
 
 def from_mpl(fig):
 
@@ -179,10 +187,10 @@ def from_mpl(fig):
     except ValueError:
         raise(ValueError, "No matplotlib SVG backend")
     fid.seek(0)
-    fig =  fromstring(fid.read())
+    fig = fromstring(fid.read())
 
-    #workaround mpl units bug
-    w,h = fig.get_size()
+    # workaround mpl units bug
+    w, h = fig.get_size()
     fig.set_size((w.replace('pt', ''), h.replace('pt', '')))
 
     return fig
