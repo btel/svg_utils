@@ -18,7 +18,7 @@ import sphinx_rtd_theme
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.insert(0, os.path.abspath('../src'))
+sys.path.insert(0, os.path.abspath('../../src'))
 
 # -- General configuration -----------------------------------------------------
 
@@ -80,7 +80,7 @@ exclude_patterns = []
 #add_module_names = True
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
-# output. They are ignored by default.
+# output. They are , 'sphinx.ext.autosummary'ignored by default.
 #show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.

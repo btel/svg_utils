@@ -35,8 +35,8 @@ class Element(_transform.FigureElement):
     def scale(self, factor):
         """Scale SVG element.
 
-        Arguments
-        ---------
+        Parameters
+        ----------
         factor : float
             The scaling factor.
 
@@ -63,10 +63,10 @@ class Element(_transform.FigureElement):
 class SVG(Element):
     """Insert SVG from file.
 
-    Arguments
-    ---------
+    Parameters
+    ----------
     fname : str
-       name of the file
+       full path to the file
     """
 
     def __init__(self, fname):
@@ -76,7 +76,16 @@ class SVG(Element):
 
 
 class Image(Element):
+    """Add (raster or vector) image
 
+    Parameters
+    ----------
+    width : float
+    height : float
+        image dimensions
+    fname : str
+        full path to the file
+    """
     def __init__(self, width, height, fname):
         fname = os.path.join(CONFIG['image.file_path'], fname)
         _, fmt = os.path.splitext(fname)
