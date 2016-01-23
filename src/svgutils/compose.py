@@ -131,6 +131,21 @@ class Image(Element):
 
 
 class Text(Element):
+    """Add text element.
+
+    Parameters
+    ----------
+    text : str
+       content
+    x, y : float or str
+       Text position. If unit is not given it will assume user units (px).
+    size : float, optional
+       Font size.
+    weight : str, optional
+       Font weight. It can be one of: normal, bold, bolder or lighter.
+    font : str, optional
+       Font family.
+    """
     def __init__(self, text, x=None, y=None, **kwargs):
         params = {'size': CONFIG['text.size'],
                   'weight': CONFIG['text.weight'],
@@ -167,12 +182,39 @@ class Panel(Element):
 
 
 class Line(Element):
+    """Add line element connecting given points.
+
+    Parameters
+    ----------
+    points : sequence of tuples
+        List of point x,y coordinates.
+    width : float, optional
+        Line width.
+    color : str, optional
+        Line color. Any of the HTML/CSS color definitions are allowed.
+    """
     def __init__(self, points, width=1, color='black'):
         element = _transform.LineElement(points, width=width, color=color)
         Element.__init__(self, element.root)
 
 
 class Grid(Element):
+    """Add line grid with coordinate labels to facilitate placement of new
+    elements.
+
+    Parameters
+    ----------
+    dx : float
+       Spacing between the vertical lines.
+    dy : float
+       Spacing between horizontal lines.
+    size : float or str
+       Font size of the labels.
+
+    Notes
+    -----
+    This element is mainly useful for manual placement of the elements.
+    """
     def __init__(self, dx, dy, size=8):
         self.size = size
         lines = self._gen_grid(dx, dy)
@@ -198,17 +240,49 @@ class Grid(Element):
 
 
 class Figure(Panel):
+    """Main figure class.
+
+    This should be always the top class of all the generated SVG figures.
+
+    Parameters
+    ----------
+    width, height : float or str
+        Figure size. If unit is not given, user units (px) are assumed.
+    """
     def __init__(self, width, height, *svgelements):
         Panel.__init__(self, *svgelements)
         self.width = Unit(width)
         self.height = Unit(height)
 
     def save(self, fname):
+        """Save figure to SVG file.
+
+        Parameters
+        ----------
+        fname : str
+            Full path to file.
+        """
         element = _transform.SVGFigure(self.width, self.height)
         element.append(self)
         element.save(fname)
 
     def tile(self, ncols, nrows):
+        """Automatically tile the panels of the figure.
+
+        This will re-arranged all elements of the figure (first in the
+        hierarchy) so that they will uniformly cover the figure area.
+
+        Parameters
+        ----------
+        ncols, nrows : type
+            The number of columns and rows to arange the elements into.
+
+
+        Notes
+        -----
+        ncols * nrows must be larger or equal to number of
+        elements, otherwise some elements will go outside the figure borders.
+        """
         dx = (self.width/ncols).to('px').value
         dy = (self.height/nrows).to('px').value
         ix, iy = 0, 0
@@ -224,6 +298,13 @@ class Figure(Panel):
 
 
 class Unit:
+    """Class implementing operationss on SVG units and conversions between them.
+
+    Parameters
+    ----------
+    measure : str
+        value with unit (for example, '2cm')
+    """
     per_inch = {'px': 90,
                 'cm': 2.54}
 
@@ -234,6 +315,18 @@ class Unit:
         self.unit = unit
 
     def to(self, unit):
+        """Convert to a given unit.
+
+        Parameters
+        ----------
+        unit : str
+           Name of the unit to convert to.
+
+        Returns
+        -------
+        u : Unit
+            new Unit object with the requested unit and computed value.
+        """
         u = Unit("0cm")
         u.value = self.value/self.per_inch[self.unit]*self.per_inch[unit]
         u.unit = unit
