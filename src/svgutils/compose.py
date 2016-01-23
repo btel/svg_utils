@@ -12,9 +12,6 @@ Features:
                            transversing XML tree)
     * universal methods applicable to all element types
     * dont have to learn python
-
-ToDo:
-    * emebed images (JPEG, PNG etc.)
 """
 
 import os
@@ -47,14 +44,52 @@ class Element(_transform.FigureElement):
         return self
 
     def move(self, x, y):
+        """Move the element by x, y.
+
+        Parameters
+        ----------
+        x,y : int, str
+           amount of horizontal and vertical shift
+
+        Notes
+        -----
+        The x, y can be given with a unit (for example, "3px",  "5cm"). If no
+        unit is given the user unit is assumed ("px"). In SVG all units are
+        defined in relation to the user unit [1]_.
+
+        .. [1] W3C SVG specification:
+           https://www.w3.org/TR/SVG/coords.html#Units
+        """
         self.moveto(x, y, 1)
         return self
 
     def find_id(self, element_id):
+        """Find a single element with the given ID.
+
+        Parameters
+        ----------
+        element_id : str
+            ID of the element to find
+
+        Returns
+        -------
+        found element
+        """
         element = _transform.FigureElement.find_id(self, element_id)
         return Element(element.root)
 
     def find_ids(self, element_ids):
+        """Find elements with given IDs.
+
+        Parameters
+        ----------
+        element_ids : list of strings
+            list of IDs to find
+
+        Returns
+        -------
+        a new `Panel` object which contains all the found elements.
+        """
         elements = [_transform.FigureElement.find_id(self, eid)
                     for eid in element_ids]
         return Panel(*elements)
@@ -108,6 +143,20 @@ class Text(Element):
 
 
 class Panel(Element):
+    """Add new panel to the figure.
+
+    Panel is a group of elements that can be transformed together. Usually
+    it relates to a labeled figure panel.
+
+    Parameters
+    ----------
+    svgelements : objects derving from Element class
+        one or more elements that compose the panel
+
+    Notes
+    -----
+    The grouped elements need to be properly arranged in scale and position.
+    """
     def __init__(self, *svgelements):
         element = _transform.GroupElement(svgelements)
         Element.__init__(self, element.root)
