@@ -96,7 +96,7 @@ class Element(_transform.FigureElement):
 
 
 class SVG(Element):
-    """Insert SVG from file.
+    """SVG from file.
 
     Parameters
     ----------
@@ -111,7 +111,7 @@ class SVG(Element):
 
 
 class Image(Element):
-    """Add (raster or vector) image
+    """Raster or vector image
 
     Parameters
     ----------
@@ -131,7 +131,7 @@ class Image(Element):
 
 
 class Text(Element):
-    """Add text element.
+    """Text element.
 
     Parameters
     ----------
@@ -158,7 +158,7 @@ class Text(Element):
 
 
 class Panel(Element):
-    """Add new panel to the figure.
+    """Figure panel.
 
     Panel is a group of elements that can be transformed together. Usually
     it relates to a labeled figure panel.
@@ -182,7 +182,7 @@ class Panel(Element):
 
 
 class Line(Element):
-    """Add line element connecting given points.
+    """Line element connecting given points.
 
     Parameters
     ----------
@@ -199,7 +199,7 @@ class Line(Element):
 
 
 class Grid(Element):
-    """Add line grid with coordinate labels to facilitate placement of new
+    """Line grid with coordinate labels to facilitate placement of new
     elements.
 
     Parameters
@@ -298,7 +298,7 @@ class Figure(Panel):
 
 
 class Unit:
-    """Class implementing operationss on SVG units and conversions between them.
+    """Implementaiton of SVG units and conversions between them.
 
     Parameters
     ----------

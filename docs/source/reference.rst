@@ -1,5 +1,7 @@
 Reference
 ---------
 
-.. automodule:: svgutils.compose
-   :members:
+.. toctree::
+
+   transform
+   compose

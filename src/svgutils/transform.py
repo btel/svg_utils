@@ -16,6 +16,7 @@ NSMAP = {None: SVG_NAMESPACE,
 
 
 class FigureElement(object):
+    """Base class representing single figure element"""
     def __init__(self, xml_element, defs=None):
 
         self.root = xml_element
@@ -43,6 +44,9 @@ class FigureElement(object):
 
 
 class TextElement(FigureElement):
+    """Text element.
+
+    Corresponds to SVG ``<text>`` tag."""
     def __init__(self, x, y, text, size=8, font="Verdana",
                  weight="normal", letterspacing=0):
         txt = etree.Element(SVG+"text", {"x": str(x), "y": str(y),
@@ -55,6 +59,10 @@ class TextElement(FigureElement):
 
 
 class ImageElement(FigureElement):
+    """Inline image element.
+
+    Correspoonds to SVG ``<image>`` tag. Image data encoded as base64 string.
+    """
     def __init__(self, stream, width, height, format='png'):
         base64str = codecs.encode(stream.read(), 'base64').rstrip()
         uri = "data:image/{};base64,{}".format(format,
@@ -69,6 +77,11 @@ class ImageElement(FigureElement):
 
 
 class LineElement(FigureElement):
+    """Line element.
+
+    Corresponds to SVG ``<path>`` tag. It handles only piecewise
+    straight segments
+    """
     def __init__(self, points, width=1, color='black'):
         linedata = "M{} {} ".format(*points[0])
         linedata += " ".join(map(lambda x: "L{} {}".format(*x), points[1:]))
@@ -80,6 +93,10 @@ class LineElement(FigureElement):
 
 
 class GroupElement(FigureElement):
+    """Group element.
+
+    Container for other elements. Corresponds to SVG ``<g>`` tag.
+    """
     def __init__(self, element_list, attrib=None):
         new_group = etree.Element(SVG+"g", attrib=attrib)
         for e in element_list:
@@ -91,6 +108,10 @@ class GroupElement(FigureElement):
 
 
 class SVGFigure(object):
+    """SVG Figure.
+
+    It setups standalone SVG tree. It corresponds to SVG ``<svg>`` tag.
+    """
     def __init__(self, width=None, height=None):
         self.root = etree.Element(SVG+"svg", nsmap=NSMAP)
         self.root.set("version", "1.1")
@@ -101,6 +122,7 @@ class SVGFigure(object):
 
     @property
     def width(self):
+        """SVG width"""
         return self.root.get("width")
 
     @width.setter
@@ -110,6 +132,7 @@ class SVGFigure(object):
 
     @property
     def height(self):
+        """SVG height"""
         return self.root.get("height")
 
     @height.setter
@@ -160,6 +183,18 @@ class SVGFigure(object):
 
 
 def fromfile(fname):
+    """Open SVG figure from file.
+
+    Parameters
+    ----------
+    fname : str
+        name of the SVG file
+
+    Returns
+    -------
+    SVGFigure
+        newly created :py:class:`SVGFigure` initialised with the file content
+    """
     fig = SVGFigure()
     fid = open(fname)
     svg_file = etree.parse(fid)
@@ -170,6 +205,19 @@ def fromfile(fname):
 
 
 def fromstring(text):
+    """Create a SVG figure from a string.
+
+    Parameters
+    ----------
+    text : str
+        string representing the SVG content. Must be valid SVG.
+
+    Returns
+    -------
+    SVGFigure
+        newly created :py:class:`SVGFigure` initialised with the string
+        content.
+    """
     fig = SVGFigure()
     svg = etree.fromstring(text)
 
@@ -179,6 +227,20 @@ def fromstring(text):
 
 
 def from_mpl(fig):
+    """Create a SVG figure from a ``matplotlib`` figure.
+
+    Parameters
+    ----------
+    fig : matplotlib.Figure instance
+        complete figure to be converted into SVG
+
+
+    Returns
+    -------
+    SVGFigure
+        newly created :py:class:`SVGFigure` initialised from the ``matplotlib``
+        figure.
+    """
 
     fid = StringIO()
 
