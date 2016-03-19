@@ -22,10 +22,30 @@ class FigureElement(object):
         self.root = xml_element
 
     def moveto(self, x, y, scale=1):
+        """Move and scale element.
+
+        Parameters
+        ----------
+        x, y : float
+             displacement in x and y coordinates in user units ('px').
+        scale : float
+             scaling factor. To scale down scale < 1,  scale up scale > 1.
+             For no scaling scale = 1.
+        """
         self.root.set("transform", "%s translate(%s, %s) scale(%s)" %
                       (self.root.get("transform") or '', x, y, scale))
 
     def rotate(self, angle, x=0, y=0):
+        """Rotate element by given angle around given pivot.
+
+        Parameters
+        ----------
+        angle : float
+            rotation angle in degrees
+        x, y : float
+            pivot coordinates in user coordinate system (defaults to top-left
+            corner of the figure)
+        """
         self.root.set("transform", "%s rotate(%f %f %f)" %
                       (self.root.get("transform") or '', angle, x, y))
 
@@ -33,12 +53,25 @@ class FigureElement(object):
         return FigureElement(self.root.getchildren()[i])
 
     def copy(self):
+        """Make a copy of the element"""
         return deepcopy(self.root)
 
     def tostr(self):
+        """String representation of the element"""
         return etree.tostring(self.root, pretty_print=True)
 
     def find_id(self, element_id):
+        """Find element by its id.
+
+        Parameters
+        ----------
+        element_id : str
+            ID of the element to find
+
+        Returns
+        -------
+        FigureElement
+            one of the children element with the given ID."""
         find = etree.XPath("//*[@id=$id]")
         return FigureElement(find(self.root, id=element_id)[0])
 
@@ -122,7 +155,7 @@ class SVGFigure(object):
 
     @property
     def width(self):
-        """SVG width"""
+        """Figure width"""
         return self.root.get("width")
 
     @width.setter
@@ -132,7 +165,7 @@ class SVGFigure(object):
 
     @property
     def height(self):
-        """SVG height"""
+        """Figure height"""
         return self.root.get("height")
 
     @height.setter
@@ -141,12 +174,23 @@ class SVGFigure(object):
         self.root.set("viewbox", "0 0 %s %s" % (self.width, self.height))
 
     def append(self, element):
+        """Append new element to the SVG figure"""
         try:
             self.root.append(element.root)
         except AttributeError:
             self.root.append(GroupElement(element).root)
 
     def getroot(self):
+        """Return the root element of the figure.
+
+        The root element is a group of elements after stripping the toplevel
+        ``<svg>`` tag.
+
+        Returns
+        -------
+        GroupElement
+            All elements of the figure without the ``<svg>`` tag.
+        """
         if 'class' in self.root.attrib:
             attrib = {'class': self.root.attrib['class']}
         else:
@@ -155,13 +199,14 @@ class SVGFigure(object):
 
     def to_str(self):
         """
-        Returns a string of the svg image
+        Returns a string of the SVG figure.
         """
         return etree.tostring(self.root, xml_declaration=True,
                               standalone=True,
                               pretty_print=True)
 
     def save(self, fname):
+        """Save figure to a file"""
         out = etree.tostring(self.root, xml_declaration=True,
                              standalone=True,
                              pretty_print=True)
@@ -170,13 +215,16 @@ class SVGFigure(object):
         fid.close()
 
     def find_id(self, element_id):
+        """Find elements with the given ID"""
         find = etree.XPath("//*[@id=$id]")
         return FigureElement(find(self.root, id=element_id)[0])
 
     def get_size(self):
+        """Get figure size"""
         return self.root.get('width'), self.root.get('height')
 
     def set_size(self, size):
+        """Set figure size"""
         w, h = size
         self.root.set('width', w)
         self.root.set('height', h)
@@ -232,14 +280,13 @@ def from_mpl(fig):
     Parameters
     ----------
     fig : matplotlib.Figure instance
-        complete figure to be converted into SVG
 
 
     Returns
     -------
     SVGFigure
-        newly created :py:class:`SVGFigure` initialised from the ``matplotlib``
-        figure.
+        newly created :py:class:`SVGFigure` initialised with the string
+        content.
     """
 
     fid = StringIO()
