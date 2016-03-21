@@ -27,3 +27,11 @@ def test_text():
     txt = fig.root.find(SVG+'text')
 
     ok_(txt.text=='lion')
+
+def test_no_unit():
+    """no unit defaults to px"""
+
+    no_unit = Unit(10)
+    assert no_unit.unit == 'px'
+    assert no_unit.value == 10.
+

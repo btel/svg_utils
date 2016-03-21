@@ -309,10 +309,14 @@ class Unit:
                 'cm': 2.54}
 
     def __init__(self, measure):
-        m = re.match('([0-9]+)([a-z]+)', measure)
-        value, unit = m.groups()
-        self.value = float(value)
-        self.unit = unit
+        try:
+            self.value = float(measure)
+            self.unit = 'px'
+        except ValueError:
+            m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+            value, unit = m.groups()
+            self.value = float(value)
+            self.unit = unit
 
     def to(self, unit):
         """Convert to a given unit.
