@@ -74,6 +74,8 @@ which completely resides on Python tools.
 
    An example script is shown and explained below:
 
+.. _transform-example-code:
+
    .. literalinclude:: fig_final.py
 
 4. *Convert to PDF/PNG*
