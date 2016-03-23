@@ -114,7 +114,8 @@ add it simply list ``Grid()`` as one of ``Figure()`` elements::
 
 The two parameters of ``Grid()`` define the spacing between the vertical and
 horizontal lines, respectively. You can use the lines and numerical labels to
-quickly estimate the vertical and horizontal shifts of the figure.
+quickly estimate the required vertical and horizontal shifts of the figure
+elements.
 
 
 Grouping elements into panels
