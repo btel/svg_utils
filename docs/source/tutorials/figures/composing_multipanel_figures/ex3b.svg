@@ -471,7 +471,7 @@
   </clipPath>
  </defs>
 </g>
-    <g transform="translate(283.464566929, 0.0) scale(1) "><defs>
+    <g transform="translate(283.464566929, 0.0) scale(1) translate(0, 0) scale(0.5) "><defs>
   <style type="text/css">
 *{stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:100000;}
   </style>

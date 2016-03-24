@@ -61,13 +61,38 @@ saves the figure in a SVG file:
 
 .. figure:: figures/composing_multipanel_figures/ex1.svg
 
-Of course this simple example is superfluous, because it does not modify the ``sigmoid_fit.svg``
-file apart from changing its size.
+Adding annotations
+------------------
+
+The simple example of previous section is superfluous, because it does not modify the ``sigmoid_fit.svg``
+file apart from changing its size. Let us try then overlaying some text on top of the figure. 
+In ``compose`` we can add text using ``Text()`` object:
+
+.. code-block:: python
+   :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex1a.svg>`
+
+   Figure("16cm", "6.5cm", 
+           Text("A", 25, 20),
+           SVG("sigmoid_fit.svg")
+          )
+
+In addition to the text itself we defined the $x$ and $y$ coordinates of the text element in pixel units.
+We can also add additional style arguments -- to increase the font size and change to bold letters we can use:
+
+.. code-block:: python
+   :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex1b.svg>`
+
+   Figure("16cm", "6.5cm", 
+           Text("A", 25, 20, size=12, weight='bold'),
+           SVG("sigmoid_fit.svg")
+          )
+
+.. figure:: figures/composing_multipanel_figures/ex1b.svg
 
 Arranging multiple elements
 ---------------------------
 
-We may add extra elements by simpling listing them inside the ``Figure()`` object:
+We can combine multiple SVG drawings by simply listing them inside the ``Figure()`` object:
 
 .. code-block:: python
    :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex2.svg>`
@@ -77,8 +102,8 @@ We may add extra elements by simpling listing them inside the ``Figure()`` objec
           SVG("anscombe.svg")
           )
 
-This will combine two SVG files into a single figure. The problem with this
-figure is that the drawing will overlap and become quite unreadable. To avoid it
+The problem with this
+figure is that the drawings will overlap and become quite unreadable. To avoid it
 we have to move figure elements. To do that automatically  you
 can use ``tile()`` method of ``Figure()``, which arranges the elements
 on a regular two-dimensional grid. For example, to arrange the two SVG elements
@@ -90,10 +115,23 @@ in a single row we might use:
 
     Figure("16cm", "6.5cm", 
            SVG("sigmoid_fit.svg"),
-           SVG("anscombe.svg").scale(0.5)
+           SVG("anscombe.svg")
            ).tile(2, 1)
 
-.. figure:: figures/composing_multipanel_figures/ex3.svg
+The second figure (:file:`anscombe.svg`) does not fit entirely in the figure so
+we have to scale it down. For this aim each element of the Figure exposes a ``scale()``
+method, which takes the scaling factor as its sole argument:
+
+.. code-block:: python
+   :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex3b.svg>`
+
+   Figure("16cm", "6.5cm", 
+          SVG("sigmoid_fit.svg"),
+          SVG("anscombe.svg").scale(0.5)
+          ).tile(2, 1)
+
+
+.. figure:: figures/composing_multipanel_figures/ex3b.svg
 
 
 For more control over the final figure layout  we can position the
@@ -169,10 +207,7 @@ into panels using ``Panel()`` object:
 ``Panel()`` just like a ``Figure()`` object takes a list of elements such as
 text objects or SVG drawings. However, in contrast to ``Figure()`` it does not
 allow to define the size and does not offer ``save()`` method. The two ``Panel()``
-objects of this example contain each a text element and a SVG file. The
-``Text()`` object not surprisingly creates a text element -- in addition to the
-text itself we can pass (optional) position arguments (alternatively we could
-just use ``move()`` method of the ``Text()`` object). 
+objects of this example contain each a text element and a SVG file. 
 
 In this example the ``Panel()``
 object serve no other role than grouping elements that refer to a single panel
