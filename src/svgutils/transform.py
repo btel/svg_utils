@@ -32,8 +32,8 @@ class FigureElement(object):
              scaling factor. To scale down scale < 1,  scale up scale > 1.
              For no scaling scale = 1.
         """
-        self.root.set("transform", "%s translate(%s, %s) scale(%s)" %
-                      (self.root.get("transform") or '', x, y, scale))
+        self.root.set("transform", "translate(%s, %s) scale(%s) %s" %
+                      (x, y, scale, self.root.get("transform") or ''))
 
     def rotate(self, angle, x=0, y=0):
         """Rotate element by given angle around given pivot.
