@@ -19,6 +19,7 @@ import re
 
 from svgutils import transform as _transform
 CONFIG = {'svg.file_path': '.',
+          'figure.save_path' : '.',
           'image.file_path': '.',
           'text.position': (0, 0),
           'text.size': 8,
@@ -264,7 +265,7 @@ class Figure(Panel):
         """
         element = _transform.SVGFigure(self.width, self.height)
         element.append(self)
-        element.save(fname)
+        element.save(os.path.join(CONFIG['figure.save_path'], fname))
 
     def tile(self, ncols, nrows):
         """Automatically tile the panels of the figure.
