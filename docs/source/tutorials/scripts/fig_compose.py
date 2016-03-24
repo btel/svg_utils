@@ -11,6 +11,5 @@ Figure("16cm", "6.5cm",
         Panel(
               SVG("anscombe.svg").scale(0.5),
               Text("B", 25, 20, size=12, weight='bold')
-             ).move(280, 0),
-        Grid(10, 10)
+             ).move(280, 0)
         ).save("fig_final_compose.svg")

@@ -34,12 +34,12 @@ which completely resides on Python tools.
    the scripts I will use in the example from github repository:
    `anscombe.py <https://github.com/btel/svg_utils/raw/master/docs/source/tutorial/anscombe.py>`_ and `sigmoid_fit.py <https://github.com/btel/svg_utils/raw/master/docs/source/tutorial/sigmoid_fit.py>`_.
 
-   .. figure:: sigmoid_fit.png
+   .. figure:: figures/sigmoid_fit.png
       :scale: 20 %
 
       ``sigmoid_fit.py``
 
-   .. figure:: anscombe.png
+   .. figure:: figures/anscombe.png
       :scale: 70 %
 
       ``anscombe.py``
@@ -76,7 +76,7 @@ which completely resides on Python tools.
 
 .. _transform-example-code:
 
-   .. literalinclude:: fig_final.py
+   .. literalinclude:: scripts/fig_final.py
 
 4. *Convert to PDF/PNG*
 
@@ -91,7 +91,7 @@ which completely resides on Python tools.
 
    And here is the final result:
 
-   .. figure:: fig_final.png
+   .. figure:: figures/fig_final.png
 
       Final publication-ready figure.
 

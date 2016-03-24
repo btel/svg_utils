@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with matplotlib (http://matplotlib.org/) -->
+<svg height="432pt" version="1.1" viewBox="0 0 576 432" width="576pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:100000;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 432 
+L 576 432 
+L 576 0 
+L 0 0 
+z
+" style="fill:#ffffff;"/>
+  </g>
+  <g id="axes_1">
+   <g id="line2d_1">
+    <defs>
+     <path d="M -3 3 
+L 3 3 
+L 3 -3 
+L -3 -3 
+z
+" id="m18379aa368" style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;"/>
+    </defs>
+    <g clip-path="url(#p2772e59ed2)">
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="173.454545455" xlink:href="#m18379aa368" y="121.221818182"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="153.163636364" xlink:href="#m18379aa368" y="135.490909091"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="203.890909091" xlink:href="#m18379aa368" y="127.243636364"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="163.309090909" xlink:href="#m18379aa368" y="111.141818182"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="183.6" xlink:href="#m18379aa368" y="117.425454545"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="214.036363636" xlink:href="#m18379aa368" y="96.0872727273"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="132.872727273" xlink:href="#m18379aa368" y="131.694545455"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="112.581818182" xlink:href="#m18379aa368" y="170.705454545"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="193.745454545" xlink:href="#m18379aa368" y="84.5672727273"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="143.018181818" xlink:href="#m18379aa368" y="163.374545455"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="122.727272727" xlink:href="#m18379aa368" y="152.116363636"/>
+    </g>
+   </g>
+   <g id="line2d_2">
+    <path clip-path="url(#p2772e59ed2)" d="M 112.581818 161.018182 
+L 214.036364 95.563636 
+" style="fill:none;stroke:#ff0000;stroke-linecap:square;stroke-width:2.0;"/>
+   </g>
+   <g id="matplotlib.axis_1"/>
+   <g id="matplotlib.axis_2"/>
+  </g>
+  <g id="axes_2">
+   <g id="line2d_3">
+    <g clip-path="url(#p9875351702)">
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="416.945454545" xlink:href="#m18379aa368" y="106.821818182"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="396.654545455" xlink:href="#m18379aa368" y="119.912727273"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="447.381818182" xlink:href="#m18379aa368" y="112.058181818"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="406.8" xlink:href="#m18379aa368" y="111.665454545"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="427.090909091" xlink:href="#m18379aa368" y="105.250909091"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="457.527272727" xlink:href="#m18379aa368" y="120.436363636"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="376.363636364" xlink:href="#m18379aa368" y="146.225454545"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="356.072727273" xlink:href="#m18379aa368" y="185.890909091"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="437.236363636" xlink:href="#m18379aa368" y="106.952727273"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="386.509090909" xlink:href="#m18379aa368" y="131.432727273"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="366.218181818" xlink:href="#m18379aa368" y="164.421818182"/>
+    </g>
+   </g>
+   <g id="line2d_4">
+    <path clip-path="url(#p9875351702)" d="M 356.072727 161.018182 
+L 457.527273 95.563636 
+" style="fill:none;stroke:#ff0000;stroke-linecap:square;stroke-width:2.0;"/>
+   </g>
+   <g id="matplotlib.axis_3"/>
+   <g id="matplotlib.axis_4"/>
+  </g>
+  <g id="axes_3">
+   <g id="line2d_5">
+    <g clip-path="url(#p435722e88b)">
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="173.454545455" xlink:href="#m18379aa368" y="317.323636364"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="153.163636364" xlink:href="#m18379aa368" y="326.356363636"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="203.890909091" xlink:href="#m18379aa368" y="248.203636364"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="163.309090909" xlink:href="#m18379aa368" y="321.905454545"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="183.6" xlink:href="#m18379aa368" y="312.741818182"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="214.036363636" xlink:href="#m18379aa368" y="299.258181818"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="132.872727273" xlink:href="#m18379aa368" y="335.389090909"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="112.581818182" xlink:href="#m18379aa368" y="344.421818182"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="193.745454545" xlink:href="#m18379aa368" y="308.290909091"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="143.018181818" xlink:href="#m18379aa368" y="330.938181818"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="122.727272727" xlink:href="#m18379aa368" y="339.970909091"/>
+    </g>
+   </g>
+   <g id="line2d_6">
+    <path clip-path="url(#p435722e88b)" d="M 112.581818 349.527273 
+L 214.036364 284.072727 
+" style="fill:none;stroke:#ff0000;stroke-linecap:square;stroke-width:2.0;"/>
+   </g>
+   <g id="matplotlib.axis_5"/>
+   <g id="matplotlib.axis_6"/>
+  </g>
+  <g id="axes_4">
+   <g id="line2d_7">
+    <g clip-path="url(#pc704e5a785)">
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="396.654545455" xlink:href="#m18379aa368" y="328.843636364"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="396.654545455" xlink:href="#m18379aa368" y="339.578181818"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="396.654545455" xlink:href="#m18379aa368" y="314.050909091"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="396.654545455" xlink:href="#m18379aa368" y="299.258181818"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="396.654545455" xlink:href="#m18379aa368" y="304.101818182"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="396.654545455" xlink:href="#m18379aa368" y="322.821818182"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="396.654545455" xlink:href="#m18379aa368" y="346.254545455"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="508.254545455" xlink:href="#m18379aa368" y="251.345454545"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="396.654545455" xlink:href="#m18379aa368" y="342.196363636"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="396.654545455" xlink:href="#m18379aa368" y="311.432727273"/>
+     <use style="stroke:#000000;stroke-linejoin:miter;stroke-width:0.5;" x="396.654545455" xlink:href="#m18379aa368" y="324.785454545"/>
+    </g>
+   </g>
+   <g id="line2d_8">
+    <path clip-path="url(#pc704e5a785)" d="M 396.654545 323.345455 
+L 508.254545 251.345455 
+" style="fill:none;stroke:#ff0000;stroke-linecap:square;stroke-width:2.0;"/>
+   </g>
+   <g id="matplotlib.axis_7"/>
+   <g id="matplotlib.axis_8"/>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p435722e88b">
+   <rect height="157.090909091" width="202.909090909" x="72.0" y="231.709090909"/>
+  </clipPath>
+  <clipPath id="pc704e5a785">
+   <rect height="157.090909091" width="202.909090909" x="315.490909091" y="231.709090909"/>
+  </clipPath>
+  <clipPath id="p9875351702">
+   <rect height="157.090909091" width="202.909090909" x="315.490909091" y="43.2"/>
+  </clipPath>
+  <clipPath id="p2772e59ed2">
+   <rect height="157.090909091" width="202.909090909" x="72.0" y="43.2"/>
+  </clipPath>
+ </defs>
+</svg>
