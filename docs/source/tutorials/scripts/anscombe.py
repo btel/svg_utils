@@ -67,5 +67,5 @@ ls2.set_visible(True)
 ls3.set_visible(True)
 ls4.set_visible(True)
 
-savefig('anscombe.png')
-savefig('anscombe.svg')
+savefig('anscombe.png', transparent=True)
+savefig('anscombe.svg', transparent=True)

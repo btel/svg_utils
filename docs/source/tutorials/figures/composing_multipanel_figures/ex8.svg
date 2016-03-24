@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='ASCII' standalone='yes'?>
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" width="16cm" viewbox="0 0 16cm 6.5cm" height="6.5cm">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" width="16.0cm" viewbox="0 0 16.0cm 6.5cm" height="6.5cm">
   <g>
-    <g><defs>
+    <g>
+      <text font-family="Verdana" font-size="8" font-weight="normal" letter-spacing="0" x="25" y="20">A</text>
+      <g><defs>
   <style type="text/css">
 *{stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:100000;}
   </style>
@@ -471,7 +473,10 @@
   </clipPath>
  </defs>
 </g>
-    <g transform="translate(280, 0) scale(0.5) "><defs>
+    </g>
+    <g transform="translate(280, 0) scale(1) ">
+      <text font-family="Verdana" font-size="8" font-weight="normal" letter-spacing="0" x="25" y="20">B</text>
+      <g transform="translate(0, 0) scale(0.5) "><defs>
   <style type="text/css">
 *{stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:100000;}
   </style>
@@ -587,9 +592,6 @@
   </clipPath>
  </defs>
 </g>
-  </g>
-  <g>
-    <text font-family="Verdana" font-size="12" font-weight="bold" letter-spacing="0" x="25" y="20">A</text>
-    <text font-family="Verdana" font-size="12" font-weight="bold" letter-spacing="0" x="305" y="20">B</text>
+    </g>
   </g>
 </svg>

@@ -50,13 +50,16 @@ to "px". ``SVG()`` is another object from ``compose`` module, which simply
 parses and pastes the content of a SVG file into the figure. 
 
 The ``Figure()`` object also defines several methods; the ``save()`` method
-saves the figure in a SVG file::
+saves the figure in a SVG file:
 
-    Figure("16cm", "6.5cm", 
-           SVG("sigmoid_fit.svg")
-           ).save("fig1.svg")
+.. code-block:: python
+   :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex1.svg>`
 
-.. figure:: figures/composing_multipanel_figures_ex1.svg
+   Figure("16cm", "6.5cm", 
+          SVG("sigmoid_fit.svg")
+          ).save("fig1.svg")
+
+.. figure:: figures/composing_multipanel_figures/ex1.svg
 
 Of course this simple example is superfluous, because it does not modify the ``sigmoid_fit.svg``
 file apart from changing its size.
@@ -64,30 +67,40 @@ file apart from changing its size.
 Arranging multiple elements
 ---------------------------
 
-We may add extra elements by simpling listing them inside the ``Figure()`` object::
+We may add extra elements by simpling listing them inside the ``Figure()`` object:
 
-    Figure("16cm", "6.5cm", 
-           SVG("sigmoid_fit.svg"),
-           SVG("anscombe.svg")
-           )
+.. code-block:: python
+   :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex2.svg>`
+
+   Figure("16cm", "6.5cm", 
+          SVG("sigmoid_fit.svg"),
+          SVG("anscombe.svg")
+          )
 
 This will combine two SVG files into a single figure. The problem with this
 figure is that the drawing will overlap and become quite unreadable. To avoid it
 we have to move figure elements. To do that automatically  you
 can use ``tile()`` method of ``Figure()``, which arranges the elements
 on a regular two-dimensional grid. For example, to arrange the two SVG elements
-in a single row we might use::
+in a single row we might use:
+
+
+.. code-block:: python
+   :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex3.svg>`
 
     Figure("16cm", "6.5cm", 
            SVG("sigmoid_fit.svg"),
            SVG("anscombe.svg").scale(0.5)
            ).tile(2, 1)
 
-.. figure:: figures/composing_multipanel_figures_ex2.svg
+.. figure:: figures/composing_multipanel_figures/ex3.svg
 
 
 For more control over the final figure layout  we can position the
-individual elements using their ``move()`` method::
+individual elements using their ``move()`` method:
+
+.. code-block:: python
+   :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex4.svg>`
 
     Figure("16cm", "6.5cm", 
            SVG("sigmoid_fit.svg"),
@@ -98,7 +111,7 @@ This will move the ``ansombe.svg`` 280 px horizontally. Methods can be also
 chained:
 
 .. code-block:: python
-   :caption: :download:`Figure preview <figures/composing_multipanel_figure_ex1.svg>`
+   :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex5.svg>`
 
    Figure("16cm", "6.5cm", 
           SVG("sigmoid_fit.svg"),
@@ -110,7 +123,10 @@ It's often difficult to arrange the figures correctly and it can involve mundane
 going back and fro between the code and generated SVG file. To ease the process
 ``compose`` offers several helper objects: The ``Grid()`` object generates a grid of
 horizontal and vertical lines labelled with their position in pixel units. To
-add it simply list ``Grid()`` as one of ``Figure()`` elements::
+add it simply list ``Grid()`` as one of ``Figure()`` elements:
+
+.. code-block:: python
+   :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex6.svg>`
 
     Figure("16cm", "6.5cm", 
            SVG("sigmoid_fit.svg"),
@@ -133,19 +149,22 @@ contain multiple elements such as graphs, legends and annotations (text, arrows
 etc.). Although it is possible to list all these elements separately in the
 ``Figure()`` object, it's more convenient to work with all elements belonging to
 a single panel as an entire group. In ``compose`` one can group the elements
-into panels using ``Panel()`` object::
+into panels using ``Panel()`` object:
 
-    Figure("16cm", "6.5cm", 
-           Panel(
-              Text("A", 25, 20),
-              SVG("sigmoid_fit.svg")
-              ),
-           Panel(
-              Text("B", 25, 20).move(280, 0),
-              SVG("anscombe.svg").scale(0.5)
-                                 .move(280, 0)
-              )
-           )
+.. code-block:: python
+   :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex7.svg>`
+
+   Figure("16cm", "6.5cm", 
+          Panel(
+             Text("A", 25, 20),
+             SVG("sigmoid_fit.svg")
+             ),
+          Panel(
+             Text("B", 25, 20).move(280, 0),
+             SVG("anscombe.svg").scale(0.5)
+                                .move(280, 0)
+             )
+          )
 
 ``Panel()`` just like a ``Figure()`` object takes a list of elements such as
 text objects or SVG drawings. However, in contrast to ``Figure()`` it does not
@@ -161,18 +180,21 @@ object serve no other role than grouping elements that refer to a single panel
 not simplify the task of creating the figure. In the second ``Panel()`` we apply
 twice the method ``move()`` to position both the text element and the SVG. The
 advantage of ``Panel()`` is that we can apply such transforms to the entire
-panel::
+panel:
 
-    Figure("16cm", "6.5cm", 
-           Panel(
-              Text("A", 25, 20),
-              SVG("sigmoid_fit.svg")
-              ),
-           Panel(
-              Text("B", 25, 20),
-              SVG("anscombe.svg").scale(0.5)
-              ).move(280, 0)
-           )
+.. code-block:: python
+   :caption: :download:`Figure preview <figures/composing_multipanel_figures/ex8.svg>`
+
+   Figure("16cm", "6.5cm", 
+          Panel(
+             Text("A", 25, 20),
+             SVG("sigmoid_fit.svg")
+             ),
+          Panel(
+             Text("B", 25, 20),
+             SVG("anscombe.svg").scale(0.5)
+             ).move(280, 0)
+          )
 
 This way we simplified the code, but also the change allows for easier
 arrangement of the panels. An additional advantage is that the ``tile()`` method

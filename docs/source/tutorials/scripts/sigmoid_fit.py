@@ -77,5 +77,5 @@ plt.text(0, 0.9, "frequency", transform=ax_inset.transAxes,
         va='center', ha='right', size=6
     )
 #export to svg
-plt.savefig('sigmoid_fit.png')
-plt.savefig('sigmoid_fit.svg')
+plt.savefig('sigmoid_fit.png', transparent=True)
+plt.savefig('sigmoid_fit.svg', transparent=True)
