@@ -1,13 +1,13 @@
 .. title:: svgutils tutorial
 
-===================================================================
-Creating plublication-quality figures using matplotlib and svgutils
-===================================================================
+=====================================
+Creating plublication-quality figures
+=====================================
 
 `Matplotlib <http://matplotlib.sf.net>`_ is a decent Python library
 for creating publication-quality plots which offers a multitude of
 different plot types. However, one limitation of ``matplotlib`` is that
-creating complex layouts can be at times complicated. Therefore, 
+creating complex layouts can be at times complicated. Therefore,
 post-processing of plots is usually done in some other vector graphics
 editor such as `inkscape <http://inkscape.org/>`_ or Adobe
 Illustrator. The typical workflow is as following:
@@ -34,16 +34,16 @@ which completely resides on Python tools.
    the scripts I will use in the example from github repository:
    `anscombe.py <https://github.com/btel/svg_utils/raw/master/docs/source/tutorial/anscombe.py>`_ and `sigmoid_fit.py <https://github.com/btel/svg_utils/raw/master/docs/source/tutorial/sigmoid_fit.py>`_.
 
-   .. figure:: sigmoid_fit.png
+   .. figure:: figures/sigmoid_fit.png
       :scale: 20 %
 
       ``sigmoid_fit.py``
 
-   .. figure:: anscombe.png
+   .. figure:: figures/anscombe.png
       :scale: 70 %
 
       ``anscombe.py``
-      
+
 2. *Export to SVG*
 
    A nice feature of matplotlib is that it allows to export figure to
@@ -74,7 +74,9 @@ which completely resides on Python tools.
 
    An example script is shown and explained below:
 
-   .. literalinclude:: fig_final.py
+.. _transform-example-code:
+
+   .. literalinclude:: scripts/fig_final.py
 
 4. *Convert to PDF/PNG*
 
@@ -89,7 +91,7 @@ which completely resides on Python tools.
 
    And here is the final result:
 
-   .. figure:: fig_final.png
+   .. figure:: figures/fig_final.png
 
       Final publication-ready figure.
 
