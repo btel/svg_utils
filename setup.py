@@ -4,7 +4,7 @@
 from setuptools import setup
 
 setup(name='svgutils',
-      version='0.1.4',
+      version='0.2.0',
       description='Python SVG editor',
       long_description="""This is an utility package that helps to edit and
       concatenate SVG files. It is especially directed at scientists preparing
