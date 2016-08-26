@@ -23,7 +23,6 @@ setup(name='svgutils',
           'Operating System :: OS Independent',
           'Programming Language :: Python :: 3.5',
           'Programming Language :: Python :: 2.7',
-          'Programming Language :: Python :: 2.6',
           'Topic :: Multimedia :: Graphics :: Editors :: Vector-Based',
           'Topic :: Scientific/Engineering :: Visualization',
           'Topic :: Text Processing :: Markup'
