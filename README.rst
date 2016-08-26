@@ -1,5 +1,8 @@
-[![Build Status](https://travis-ci.org/btel/svg_utils.svg?branch=master)](https://travis-ci.org/btel/svg_utils)
-[![Docs status](https://readthedocs.org/projects/svgutils/badge/?version=latest)](http://svgutils.readthedocs.io/en/latest/?badge=latest)]
+.. image:: https://travis-ci.org/btel/svg_utils.svg?branch=master
+    :target: https://travis-ci.org/btel/svg_utils
+
+.. image:: https://readthedocs.org/projects/svgutils/badge/?version=latest
+    :target: http://svgutils.readthedocs.io/en/latest/?badge=latest
 
 Python-based SVG editor
 =======================
