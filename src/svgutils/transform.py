@@ -89,7 +89,6 @@ class TextElement(FigureElement):
                                          "font-weight": weight,
                                          "letter-spacing": str(letterspacing),
                                          "text-anchor": str(anchor),
-                                         "stroke": str(color),
                                          "fill": str(color)})
         txt.text = text
         FigureElement.__init__(self, txt)
