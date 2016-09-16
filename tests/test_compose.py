@@ -35,3 +35,13 @@ def test_no_unit():
     assert no_unit.unit == 'px'
     assert no_unit.value == 10.
 
+def test_units():
+    """test unit parsing"""
+
+    length = Unit("10cm")
+    assert length.unit == 'cm'
+    assert length.value == 10
+
+    length = Unit("10.5cm")
+    assert length.unit == 'cm'
+    assert length.value == 10.5
