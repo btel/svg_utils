@@ -270,7 +270,7 @@ def fromstring(text):
         content.
     """
     fig = SVGFigure()
-    svg = etree.fromstring(text)
+    svg = etree.fromstring(text.encode())
 
     fig.root = svg
 
