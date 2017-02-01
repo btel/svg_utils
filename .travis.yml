@@ -1,4 +1,6 @@
 language: python
+env:
+  - MPLBACKEND=agg
 python:
   - "2.7"
   - "3.5"
