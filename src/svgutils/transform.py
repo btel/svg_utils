@@ -277,12 +277,17 @@ def fromstring(text):
     return fig
 
 
-def from_mpl(fig):
+def from_mpl(fig, savefig_kw):
     """Create a SVG figure from a ``matplotlib`` figure.
 
     Parameters
     ----------
     fig : matplotlib.Figure instance
+
+    savefig_kw : dict
+         keyword arguments to be passed to matplotlib's
+         `savefig`
+       
 
 
     Returns
@@ -290,6 +295,24 @@ def from_mpl(fig):
     SVGFigure
         newly created :py:class:`SVGFigure` initialised with the string
         content.
+
+
+    Examples
+    --------
+
+    If you want to overlay the figure on another SVG, you may want to pass
+    the `transparent` option:
+
+    >>> from svgutils import transform
+    >>> import matplotlib.pyplot as plt
+    >>> fig = plt.figure()
+    >>> line, = plt.plot([1,2])
+    >>> svgfig = transform.from_mpl(fig, 
+    ...              savefig_kw=dict(transparent=True))
+    >>> svgfig.getroot()
+    <svgutils.transform.GroupElement object at ...>
+
+
     """
 
     fid = StringIO()
