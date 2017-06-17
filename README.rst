@@ -12,7 +12,10 @@ files. It is especially directed at scientists preparing final figures
 for submission to journal. So far it supports arbitrary placement and
 scaling of svg figures and adding markers, such as labels.
 
-See a `blog post <http://neuroscience.telenczuk.pl/?p=331>`_  for a short tutorial.
+See the `blog post <http://neuroscience.telenczuk.pl/?p=331>`_  for a short tutorial.
+
+The full documentation is available 
+`here <https://svgutils.readthedocs.io/en/latest/index.html>`_.
 
 Install
 -------
