@@ -58,6 +58,17 @@ Related packages
 `svg_stack <https://github.com/astraw/svg_stack>`_ is a similar
 package that layouts multiple SVG files automatically (in a Qt-style).
 
+`svgmanip <https://github.com/CrazyPython/svgmanip>`_ a related
+library that aims for a simpler API with the ability to export to
+PNG accurately
+
+`cairosvg <http://cairosvg.org/>`_ a CLI SVG manipulator with a 
+Python Library for Python 3.4+
+
+`svglib <https://pypi.python.org/pypi/svglib/>`_ a pure-Python 
+library for reading and converting SVG (note: the PNG export is
+poor quality)
+
 Authors
 -------
 
