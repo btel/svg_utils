@@ -49,29 +49,27 @@ class FigureElement(object):
         self.root.set("transform", "%s rotate(%f %f %f)" %
                       (self.root.get("transform") or '', angle, x, y))
 
-    def skew_x(self, angle):
-        """Skew element along the x-axis by the given angle.
+    def skew(self, x=0, y=0):
+        """Skew the element by x and y degrees
 
         Parameters
         ----------
-        angle : float
-            x-axis skew angle in degrees
+        x,y : float, float
+            skew angle in degrees (default 0)
+
+            If an x/y angle is given as zero degrees, that transformation is omitted.
         """
-        self.root.set("transform", "%s skewX(%f)" %
-                      (self.root.get("transform") or '', angle))
 
-    def skew_y(self, angle):
-        """Skew element along the y-axis by the given angle.
+        if x is not 0:
+            self.root.set("transform", "%s skewX(%f)" %
+                          (self.root.get("transform") or '', x))
+        if y is not 0:
+            self.root.set("transform", "%s skewY(%f)" %
+                          (self.root.get("transform") or '', y))
 
-        Parameters
-        ----------
-        angle : float
-            y-axis skew angle in degrees
-        """
-        self.root.set("transform", "%s skewY(%f)" %
-                      (self.root.get("transform") or '', angle))
+        return self
 
-    def scale_xy(self, x, y=None):
+    def scale_xy(self, x=0, y=None):
         """Scale element separately across the two axes x and y.
             If y is not provided, it is assumed equal to x (according to the
             W3 specification).

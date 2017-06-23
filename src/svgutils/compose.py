@@ -64,24 +64,6 @@ class Element(_transform.FigureElement):
         self.moveto(x, y, 1)
         return self
 
-    def skew(self, x, y):
-        """
-
-        Parameters
-        ----------
-        x,y : float, float
-            skew angle in degrees
-
-            If an x/y angle is given as zero degrees, that transformation is omitted.
-        """
-
-        if x is not 0:
-            self.skewX(self, x)
-        if y is not 0:
-            self.skewY(self, y)
-
-        return self
-
     def find_id(self, element_id):
         """Find a single element with the given ID.
 
