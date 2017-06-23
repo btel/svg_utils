@@ -49,6 +49,28 @@ class FigureElement(object):
         self.root.set("transform", "%s rotate(%f %f %f)" %
                       (self.root.get("transform") or '', angle, x, y))
 
+    def skewX(self, angle):
+        """Skew element along the x-axis by the given angle.
+
+        Parameters
+        ----------
+        angle : float
+            x-axis skew angle in degrees
+        """
+        self.root.set("transform", "%s skewX(%f)" %
+                      (self.root.get("transform") or '', angle))
+
+    def skewY(self, angle):
+        """Skew element along the y-axis by the given angle.
+
+        Parameters
+        ----------
+        angle : float
+            y-axis skew angle in degrees
+        """
+        self.root.set("transform", "%s skewY(%f)" %
+                      (self.root.get("transform") or '', angle))
+
     def __getitem__(self, i):
         return FigureElement(self.root.getchildren()[i])
 
