@@ -71,6 +71,24 @@ class FigureElement(object):
         self.root.set("transform", "%s skewY(%f)" %
                       (self.root.get("transform") or '', angle))
 
+
+    def scaleXY(self, x, y=None):
+        """Scale element separately across the two axes x and y.
+            If y is not provided, it is assumed equal to x (according to the
+            W3 specification).
+
+        Parameters
+        ----------
+        x : float
+            x-axis scaling factor. To scale down x < 1, scale up x > 1.
+        y : (optional) float
+            y-axis scaling factor. To scale down y < 1, scale up y > 1.
+
+        """
+        self.root.set("transform", "%s scale(%f %f)" %
+                      (self.root.get("transform") or '',
+                       x, y if y is not None else ''))
+        
     def __getitem__(self, i):
         return FigureElement(self.root.getchildren()[i])
 
