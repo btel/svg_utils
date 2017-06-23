@@ -49,7 +49,7 @@ class FigureElement(object):
         self.root.set("transform", "%s rotate(%f %f %f)" %
                       (self.root.get("transform") or '', angle, x, y))
 
-    def skewX(self, angle):
+    def skew_x(self, angle):
         """Skew element along the x-axis by the given angle.
 
         Parameters
@@ -60,7 +60,7 @@ class FigureElement(object):
         self.root.set("transform", "%s skewX(%f)" %
                       (self.root.get("transform") or '', angle))
 
-    def skewY(self, angle):
+    def skew_y(self, angle):
         """Skew element along the y-axis by the given angle.
 
         Parameters
@@ -71,8 +71,7 @@ class FigureElement(object):
         self.root.set("transform", "%s skewY(%f)" %
                       (self.root.get("transform") or '', angle))
 
-
-    def scaleXY(self, x, y=None):
+    def scale_xy(self, x, y=None):
         """Scale element separately across the two axes x and y.
             If y is not provided, it is assumed equal to x (according to the
             W3 specification).
@@ -88,7 +87,7 @@ class FigureElement(object):
         self.root.set("transform", "%s scale(%f %f)" %
                       (self.root.get("transform") or '',
                        x, y if y is not None else ''))
-        
+
     def __getitem__(self, i):
         return FigureElement(self.root.getchildren()[i])
 
