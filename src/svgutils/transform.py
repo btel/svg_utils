@@ -49,6 +49,65 @@ class FigureElement(object):
         self.root.set("transform", "%s rotate(%f %f %f)" %
                       (self.root.get("transform") or '', angle, x, y))
 
+    def skew(self, x=0, y=0):
+        """Skew the element by x and y degrees
+        Convenience function which calls skew_x and skew_y
+
+        Parameters
+        ----------
+        x,y : float, float
+            skew angle in degrees (default 0)
+
+            If an x/y angle is given as zero degrees, that transformation is omitted.
+        """
+        if x is not 0:
+            self.skew_x(x)
+        if y is not 0:
+            self.skew_y(y)
+
+        return self
+
+    def skew_x(self, x):
+        """Skew element along the x-axis by the given angle.
+
+        Parameters
+        ----------
+        x : float
+            x-axis skew angle in degrees
+        """
+        self.root.set("transform", "%s skewX(%f)" %
+                      (self.root.get("transform") or '', x))
+        return self
+
+    def skew_y(self, y):
+        """Skew element along the y-axis by the given angle.
+
+        Parameters
+        ----------
+        y : float
+            y-axis skew angle in degrees
+        """
+        self.root.set("transform", "%s skewY(%f)" %
+                      (self.root.get("transform") or '', y))
+        return self
+
+    def scale_xy(self, x=0, y=None):
+        """Scale element separately across the two axes x and y.
+            If y is not provided, it is assumed equal to x (according to the
+            W3 specification).
+
+        Parameters
+        ----------
+        x : float
+            x-axis scaling factor. To scale down x < 1, scale up x > 1.
+        y : (optional) float
+            y-axis scaling factor. To scale down y < 1, scale up y > 1.
+
+        """
+        self.root.set("transform", "%s scale(%f %f)" %
+                      (self.root.get("transform") or '',
+                       x, y if y is not None else ''))
+
     def __getitem__(self, i):
         return FigureElement(self.root.getchildren()[i])
 
