@@ -284,8 +284,8 @@ class Figure(Panel):
         ncols * nrows must be larger or equal to number of
         elements, otherwise some elements will go outside the figure borders.
         """
-        dx = (self.width/ncols).to('px').value
-        dy = (self.height/nrows).to('px').value
+        dx = self.width.to('px').value / ncols
+        dy = self.height.to('px').value / nrows
         ix, iy = 0, 0
         for el in self:
             el.move(dx*ix, dy*iy)
