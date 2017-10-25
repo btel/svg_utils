@@ -307,7 +307,10 @@ class Unit:
         value with unit (for example, '2cm')
     """
     per_inch = {'px': 90,
-                'cm': 2.54}
+                'cm': 2.54,
+                'mm': 25.4,
+                'pt': 1
+                }
 
     def __init__(self, measure):
         try:
