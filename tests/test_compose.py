@@ -1,5 +1,5 @@
 from svgutils.compose import *
-from nose.tools import ok_
+from nose.tools import ok_, assert_almost_equal
 from svgutils.transform import SVG, XLINK
 import codecs
 import hashlib
@@ -45,3 +45,15 @@ def test_units():
     length = Unit("10.5cm")
     assert length.unit == 'cm'
     assert length.value == 10.5
+
+def test_unit_div():
+    """test divding a number with unit by a number"""
+
+    length = Unit("10cm")
+    shorter_length = length / 2
+    assert length.unit == 'cm'
+    assert_almost_equal(shorter_length.value, 5)
+
+    shorter_length = length / 2.
+    assert length.unit == 'cm'
+    assert_almost_equal(shorter_length.value, 5.)

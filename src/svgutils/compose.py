@@ -346,5 +346,8 @@ class Unit:
         u.unit = self.unit
         return u
 
+    def __truediv__(self, number):
+        return self * (1./number)
+
     def __div__(self, number):
         return self * (1./number)
