@@ -268,11 +268,14 @@ class Figure(Panel):
         element.save(os.path.join(CONFIG['figure.save_path'], fname))
 
     def tostr(self):
-        """Export SVG as string"""
+        """Export SVG as a string"""
         element = _transform.SVGFigure(self.width, self.height)
         element.append(self)
         svgstr = element.to_str()
         return svgstr
+
+    def _repr_svg_(self):
+        return self.tostr().decode('ascii')
 
     def tile(self, ncols, nrows):
         """Automatically tile the panels of the figure.
