@@ -105,9 +105,26 @@ class SVG(Element):
        full path to the file
     """
 
-    def __init__(self, fname):
-        fname = os.path.join(CONFIG['svg.file_path'], fname)
-        svg = _transform.fromfile(fname)
+    def __init__(self, fname=None):
+        if fname:
+            fname = os.path.join(CONFIG['svg.file_path'], fname)
+            svg = _transform.fromfile(fname)
+            self.root = svg.getroot().root
+
+
+class MplFigure(SVG):
+    """Matplotlib figure
+
+    Parameters
+    ----------
+    fig : matplotlib Figure isinstanc
+        instance of Figure to be converted
+    kws :
+        keyword arguments passed to matplotlib's savefig method
+    """
+
+    def __init__(self, fig, **kws):
+        svg = _transform.from_mpl(fig, savefig_kw=kws)
         self.root = svg.getroot().root
 
 

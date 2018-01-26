@@ -336,7 +336,7 @@ def fromstring(text):
     return fig
 
 
-def from_mpl(fig, savefig_kw):
+def from_mpl(fig, savefig_kw=None):
     """Create a SVG figure from a ``matplotlib`` figure.
 
     Parameters
@@ -346,7 +346,7 @@ def from_mpl(fig, savefig_kw):
     savefig_kw : dict
          keyword arguments to be passed to matplotlib's
          `savefig`
-       
+
 
 
     Returns
@@ -366,7 +366,7 @@ def from_mpl(fig, savefig_kw):
     >>> import matplotlib.pyplot as plt
     >>> fig = plt.figure()
     >>> line, = plt.plot([1,2])
-    >>> svgfig = transform.from_mpl(fig, 
+    >>> svgfig = transform.from_mpl(fig,
     ...              savefig_kw=dict(transparent=True))
     >>> svgfig.getroot()
     <svgutils.transform.GroupElement object at ...>
@@ -375,9 +375,11 @@ def from_mpl(fig, savefig_kw):
     """
 
     fid = StringIO()
+    if savefig_kw is None:
+        savefig_kw = {}
 
     try:
-        fig.savefig(fid, format='svg')
+        fig.savefig(fid, format='svg', **savefig_kw)
     except ValueError:
         raise(ValueError, "No matplotlib SVG backend")
     fid.seek(0)
