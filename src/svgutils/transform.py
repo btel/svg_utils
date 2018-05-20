@@ -142,14 +142,17 @@ class TextElement(FigureElement):
     def __init__(self, x, y, text, size=8, font="Verdana",
                  weight="normal", letterspacing=0, anchor='start',
                  color='black', style="normal", opts={}):
-        txt = etree.Element(SVG+"text", {"x": str(x), "y": str(y),
-                                         "font-size": str(size),
-                                         "font-family": font,
-                                         "font-weight": weight,
-                                         "letter-spacing": str(letterspacing),
-                                         "text-anchor": str(anchor),
-                                         "fill": str(color),
-                                         "font-style": style}.update(opts))
+        attrs = {
+            "x": str(x), "y": str(y),
+            "font-size": str(size),
+            "font-family": font,
+            "font-weight": weight,
+            "letter-spacing": str(letterspacing),
+            "text-anchor": str(anchor),
+            "fill": str(color),
+            "font-style": style}
+        attrs.update(opts)
+        txt = etree.Element(SVG+"text", attrs)
         txt.text = text
         FigureElement.__init__(self, txt)
 
