@@ -210,9 +210,15 @@ class SVGFigure(object):
     def __init__(self, width=None, height=None):
         self.root = etree.Element(SVG+"svg", nsmap=NSMAP)
         self.root.set("version", "1.1")
+
+        self._width = 0
+        self._height = 0
+
         if width:
+            self._width = width.value
             self.width = width
         if height:
+            self._height = height.value
             self.height = height
 
     @property
@@ -222,8 +228,9 @@ class SVGFigure(object):
 
     @width.setter
     def width(self, value):
+        self._width = value.value
         self.root.set('width', str(value))
-        self.root.set("viewBox", "0 0 %s %s" % (self.width.value, self.height.value))
+        self.root.set("viewBox", "0 0 %s %s" % (self._width, self._height))
 
     @property
     def height(self):
@@ -232,8 +239,9 @@ class SVGFigure(object):
 
     @height.setter
     def height(self, value):
+        self._height = value.value
         self.root.set('height', str(value))
-        self.root.set("viewBox", "0 0 %s %s" % (self.width.value, self.height.value))
+        self.root.set("viewBox", "0 0 %s %s" % (self._width, self._height))
 
     def append(self, element):
         """Append new element to the SVG figure"""
