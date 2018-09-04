@@ -223,7 +223,7 @@ class SVGFigure(object):
     @width.setter
     def width(self, value):
         self.root.set('width', str(value))
-        self.root.set("viewBox", "0 0 %s %s" % (self.width, self.height))
+        self.root.set("viewBox", "0 0 %s %s" % (self.width.value, self.height.value))
 
     @property
     def height(self):
@@ -233,7 +233,7 @@ class SVGFigure(object):
     @height.setter
     def height(self, value):
         self.root.set('height', str(value))
-        self.root.set("viewBox", "0 0 %s %s" % (self.width, self.height))
+        self.root.set("viewBox", "0 0 %s %s" % (self.width.value, self.height.value))
 
     def append(self, element):
         """Append new element to the SVG figure"""
