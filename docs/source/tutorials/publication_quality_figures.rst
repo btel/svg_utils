@@ -1,7 +1,7 @@
 .. title:: svgutils tutorial
 
 =====================================
-Creating plublication-quality figures
+Creating publication-quality figures
 =====================================
 
 `Matplotlib <http://matplotlib.sf.net>`_ is a decent Python library
