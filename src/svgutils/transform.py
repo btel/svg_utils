@@ -272,9 +272,8 @@ class SVGFigure(object):
         out = etree.tostring(self.root, xml_declaration=True,
                              standalone=True,
                              pretty_print=True)
-        fid = open(fname, 'wb')
-        fid.write(out)
-        fid.close()
+        with open(fname, 'wb') as fid:
+            fid.write(out)
 
     def find_id(self, element_id):
         """Find elements with the given ID"""
@@ -306,9 +305,8 @@ def fromfile(fname):
         newly created :py:class:`SVGFigure` initialised with the file content
     """
     fig = SVGFigure()
-    fid = open(fname)
-    svg_file = etree.parse(fid)
-    fid.close()
+    with open(fname) as fid:
+        svg_file = etree.parse(fid)
 
     fig.root = svg_file.getroot()
     return fig
