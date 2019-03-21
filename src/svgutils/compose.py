@@ -103,13 +103,30 @@ class SVG(Element):
     ----------
     fname : str
        full path to the file
+    fix_mpl : bool
+        replace pt units with px units to fix files created with matplotlib
     """
 
-    def __init__(self, fname=None):
+    def __init__(self, fname=None, fix_mpl=False):
         if fname:
             fname = os.path.join(CONFIG['svg.file_path'], fname)
             svg = _transform.fromfile(fname)
-            self.root = svg.getroot().root
+            if fix_mpl:
+                w, h = svg.get_size()
+                svg.set_size((w.replace('pt', ''), h.replace('pt', '')))
+            super(SVG, self).__init__(svg.getroot().root)
+            self._width = Unit(svg.width).to('px')
+            self._height = Unit(svg.height).to('px')
+
+    @property
+    def width(self):
+        """Get width of the svg file in px"""
+        return self._width.value
+
+    @property
+    def height(self):
+        """Get height of the svg file in px"""
+        return self._height.value
 
 
 class MplFigure(SVG):
