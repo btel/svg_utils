@@ -11,7 +11,7 @@ Features:
     * no boilerplate code (reading files, extracting objects from svg,
                            transversing XML tree)
     * universal methods applicable to all element types
-    * dont have to learn python
+    * don't have to learn python
 """
 
 import os
@@ -148,7 +148,7 @@ class MplFigure(SVG):
 
     Parameters
     ----------
-    fig : matplotlib Figure isinstanc
+    fig : matplotlib Figure instance
         instance of Figure to be converted
     kws :
         keyword arguments passed to matplotlib's savefig method
@@ -214,7 +214,7 @@ class Panel(Element):
 
     Parameters
     ----------
-    svgelements : objects derving from Element class
+    svgelements : objects deriving from Element class
         one or more elements that compose the panel
 
     Notes
@@ -334,7 +334,7 @@ class Figure(Panel):
         Parameters
         ----------
         ncols, nrows : type
-            The number of columns and rows to arange the elements into.
+            The number of columns and rows to arrange the elements into.
 
 
         Notes
@@ -357,7 +357,7 @@ class Figure(Panel):
 
 
 class Unit:
-    """Implementaiton of SVG units and conversions between them.
+    """Implementation of SVG units and conversions between them.
 
     Parameters
     ----------
