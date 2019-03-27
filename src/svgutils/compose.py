@@ -44,6 +44,20 @@ class Element(_transform.FigureElement):
         self.moveto(0, 0, factor)
         return self
 
+    def rotate(self, angle, x=0, y=0):
+        """Rotate element by given angle around given pivot.
+
+        Parameters
+        ----------
+        angle : float
+            rotation angle in degrees
+        x, y : float
+            pivot coordinates in user coordinate system (defaults to top-left
+            corner of the figure)
+        """
+        super(Element, self).rotate(angle, x, y)
+        return self
+
     def move(self, x, y):
         """Move the element by x, y.
 
