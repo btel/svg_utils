@@ -11,7 +11,7 @@ Features:
     * no boilerplate code (reading files, extracting objects from svg,
                            transversing XML tree)
     * universal methods applicable to all element types
-    * dont have to learn python
+    * don't have to learn python
 """
 
 import os
@@ -42,6 +42,20 @@ class Element(_transform.FigureElement):
         """
 
         self.moveto(0, 0, factor)
+        return self
+
+    def rotate(self, angle, x=0, y=0):
+        """Rotate element by given angle around given pivot.
+
+        Parameters
+        ----------
+        angle : float
+            rotation angle in degrees
+        x, y : float
+            pivot coordinates in user coordinate system (defaults to top-left
+            corner of the figure)
+        """
+        super(Element, self).rotate(angle, x, y)
         return self
 
     def move(self, x, y):
@@ -134,7 +148,7 @@ class MplFigure(SVG):
 
     Parameters
     ----------
-    fig : matplotlib Figure isinstanc
+    fig : matplotlib Figure instance
         instance of Figure to be converted
     kws :
         keyword arguments passed to matplotlib's savefig method
@@ -200,7 +214,7 @@ class Panel(Element):
 
     Parameters
     ----------
-    svgelements : objects derving from Element class
+    svgelements : objects deriving from Element class
         one or more elements that compose the panel
 
     Notes
@@ -320,7 +334,7 @@ class Figure(Panel):
         Parameters
         ----------
         ncols, nrows : type
-            The number of columns and rows to arange the elements into.
+            The number of columns and rows to arrange the elements into.
 
 
         Notes
@@ -343,7 +357,7 @@ class Figure(Panel):
 
 
 class Unit:
-    """Implementaiton of SVG units and conversions between them.
+    """Implementation of SVG units and conversions between them.
 
     Parameters
     ----------
