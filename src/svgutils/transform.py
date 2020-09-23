@@ -275,11 +275,16 @@ class SVGFigure(object):
                               standalone=True,
                               pretty_print=True)
 
-    def save(self, fname):
-        """Save figure to a file"""
-        out = etree.tostring(self.root, xml_declaration=True,
+    def save(self, fname, encoding=None):
+        """
+        Save figure to a file
+        Default encoding is "ASCII" when None is specified, as dictated by lxml .
+        """
+        out = etree.tostring(self.root,
+                             xml_declaration=True,
                              standalone=True,
-                             pretty_print=True)
+                             pretty_print=True,
+                             encoding=encoding)
         with open(fname, 'wb') as fid:
             fid.write(out)
 
