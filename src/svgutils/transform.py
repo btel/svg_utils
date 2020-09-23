@@ -319,7 +319,7 @@ def fromfile(fname):
     """
     fig = SVGFigure()
     with open(fname) as fid:
-        svg_file = etree.parse(fid)
+        svg_file = etree.parse(fid, parser=etree.XMLParser(huge_tree=True))
 
     fig.root = svg_file.getroot()
     return fig
@@ -340,7 +340,7 @@ def fromstring(text):
         content.
     """
     fig = SVGFigure()
-    svg = etree.fromstring(text.encode())
+    svg = etree.fromstring(text.encode(), parser=etree.XMLParser(huge_tree=True))
 
     fig.root = svg
 
