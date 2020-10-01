@@ -24,14 +24,14 @@ make things worse you may need to repeat the process several times,
 when, for example, you want to include more data into the analysis.
 This includes manual editing  and arranging the figure, which is
 obviously time consuming.  Therefore it makes sense to try and
-automate the process. Here, I will describe an automatic workflow
-which completely resides on Python tools.
+automate the process. A description of an automatic workflow
+which completely resides on Python tools is given here.
 
-1. *Create plots*
+1. *Creating Matplotlib plots*
 
-   First you need to create nice matplotlib-based plots you would like
-   to compose your figure from. You may download
-   the scripts I will use in the example from github repository:
+   To create nice matplotlib-based plots so as 
+   to compose figures from. Download
+   the following example scripts:
    `anscombe.py <https://github.com/btel/svg_utils/raw/master/docs/source/tutorial/anscombe.py>`_ and `sigmoid_fit.py <https://github.com/btel/svg_utils/raw/master/docs/source/tutorial/sigmoid_fit.py>`_.
 
    .. figure:: figures/sigmoid_fit.png
@@ -44,33 +44,25 @@ which completely resides on Python tools.
 
       ``anscombe.py``
 
-2. *Export to SVG*
+2. *Exporting to SVG*
 
-   A nice feature of matplotlib is that it allows to export figure to
+   A nice feature of matplotlib is that one can export figures to
    Scalable Vector Graphics (SVG) which is an open  vector format [1]_
    understood by many applications (such as Inkscape, Adobe
-   Illustrator or even web browsers). Not going too much into details,
-   I will only say that SVG files are text files with special
-   predefined tags (much alike HTML tags). You may try to open one of
-   them in a text editor to find out what I mean.
+   Illustrator or even web browsers). In a nutshell, SVG files are text files with special
+   predefined tags (similar to HTML tags). One can open it in a text editor too.
 
-3. *Arrange plots into composite figures*
-
-   Now, we would like to combine both plots into one figure and add
-   some annotations (such as one-letter labels: A,B, etc.). To this
-   end, I will use a small Python package I wrote with this purpose
-   ``svgutils``. It is written completely in Python and uses only
-   standard libraries. You may download it from `github
+3. *Arranging plots into composite figures*
+   
+   Using ``svgutils``, one can combine both plots into one figure and add
+   some annotations (such as one-letter labels: A,B, etc.). The github source code link for ``svgutils`` is available here
    <https://github.com/btel/svg_utils>`_.
 
-   The basic operations are similar to what you would do in a vector
-   graphics editor, but instead of using a mouse you will do some
-   scripting (I am sure you love it as much as I do). It may take some
-   more time at the beginning, but with
-   the advantage that you will not have to repeat the process when,
-   for some reason, you need to modify the plots you generated
+   The basic operations are similar to what one would do in a vector
+   graphics editor but using scripts instead of a mouse cursor. This reduces repitition as one will not have to repeat the process when,
+   for some reason, one needs to modify the plots they generated
    with matplotlib (to add more data or modify the
-   parameters of your analysis, just to name a few reasons).
+   parameters of the existing analysis, for example).
 
    An example script is shown and explained below:
 
@@ -80,11 +72,10 @@ which completely resides on Python tools.
 
 4. *Convert to PDF/PNG*
 
-   After running the script, you may convert the output file to a
-   format of your choice. To this end, you can use ``inkscape`` which
-   can produce PNG and PDF files from SVG source. You can do that
-   directly from command
-   line without the need of opening the whole application::
+   After running the script, one can convert the output file to a
+   format of their choice. For this, we suggest using ``inkscape`` which
+   can produce PNG and PDF files from SVG source. 
+   One can do that directly from command line without the need of opening the whole application::
 
       inkscape --export-pdf=fig_final.pdf fig_final.svg
       inkscape --export-png=fig_final.png fig_final.svg
@@ -95,18 +86,15 @@ which completely resides on Python tools.
 
       Final publication-ready figure.
 
-Now, whenever you need to re-do the plots you can simply re-run the
-above scripts. You can also automate the process by means of a build
-system, such as GNU ``make`` or similar. This part will be covered in
+If one wishes to re-do the plots, they can simply re-run the
+above scripts. Automation of the process by means of a build
+system, such as GNU ``make`` or similar is also an option. This part will be covered in
 some of the next tutorials from the series.
 
 Good luck and happy plotting!
 
-PS If you have a better/alternative method for creating your
-publication plots, I would be very interested in learning about it.
-Please comment or mail me!
 
-.. [1] In case you do not know it, a vector format in contrast to other
+.. [1] A vector format in contrast to other
    (raster) formats such as PNG, JPEG does not represent graphics as
    individual pixels, but rather as modifiable objects (lines, circles,
    points etc.). They usually offer better qualitiy for publication plots
