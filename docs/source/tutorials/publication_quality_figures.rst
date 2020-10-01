@@ -46,7 +46,7 @@ which completely resides on Python tools is given here.
 
 2. *Exporting to SVG*
 
-   A nice feature of matplotlib is that on can export figures to
+   A nice feature of matplotlib is that one can export figures to
    Scalable Vector Graphics (SVG) which is an open  vector format [1]_
    understood by many applications (such as Inkscape, Adobe
    Illustrator or even web browsers). In a nutshell, SVG files are text files with special
