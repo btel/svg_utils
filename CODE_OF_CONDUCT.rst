@@ -1,15 +1,20 @@
 Code of Conduct
 ===============
 
-Like the technical community as a whole, the Python-based SVG editor team and community is made up of a mixture of professionals and volunteers from all over the world.
+Like the technical community as a whole, the SVGutils team and community is made up of a mixture of professionals and volunteers from all over the world.
 
 Diversity is one of our huge strengths, but it can also lead to communication issues and unhappiness. To that end, we have a few ground rules that we ask people to adhere to when they're participating within this community and project. These rules apply equally to founders, mentors and those seeking help and guidance.
 
-This isn't an exhaustive list of things that you can't do. Rather, take it in the spirit in which it's intended - a guide to make it easier to enrich all of us, the technical community and the conferences and usergroups we hope to guide new speakers to.
-
 This code of conduct applies to all communication: the issue tracker, comments, commits, and any other forums created by the project team which the community uses for communication.
 
-If you believe someone is violating the code of conduct, we ask that you report it by emailing bartosz.telenczuk@gmail.com.
+If you believe someone is violating the code of conduct, we ask that you report it by contacting any of our community leaders:
+
+- **Bartosz Telenczuk**, `GitHub <https://github.com/btel>`_
+
+New members may become community leaders with the support of at least two contributors, that created at least 2 pull requests in the period of last 2 years. This can be done by adding a pull request and any contributors supporting can comment on the issue.
+Community leaders will review your complaint and decide on course of action following the incident.
+
+This isn't an exhaustive list of things that you can't do. Rather, take it in the spirit in which it's intended - a guide to make it easier to enrich all of us and the technical community.
 
 - **Be friendly and patient**.
 - **Be welcoming**. We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to members of any race, ethnicity, culture, national origin, colour, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion, and mental and physical ability.
