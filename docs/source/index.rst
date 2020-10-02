@@ -8,6 +8,7 @@ Contents
    :numbered:
    :maxdepth: 2
 
+   getting_started
    tutorials
    reference
 
