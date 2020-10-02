@@ -43,6 +43,10 @@ You can install `svgutils` from `conda-forge` channel::
 
    conda install svgutils
 
+or we can directly install it by running the command::
+   
+   conda install -c conda-forge svgutils
+
 From sources
 ````````````
 
