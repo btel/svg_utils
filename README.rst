@@ -32,7 +32,20 @@ For the installation to be sucessful, you need development libraries of `libxml2
 On Ubuntu and other Debian-derived Linux distributions you can install them via::
 
    sudo apt-get install libxml2-dev libxslt-dev
+   
+From Conda
+``````````
+Installing `svgutils` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with::
 
+    conda config --add channels conda-forge
+    
+You can install `svgutils` from `conda-forge` channel::
+
+   conda install svgutils
+
+If you don't want to add the channel to your configuration, you can specify it at the time of installation::
+   
+   conda install svgutils -c conda-forge 
 
 From sources
 ````````````
