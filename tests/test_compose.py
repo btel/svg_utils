@@ -1,8 +1,18 @@
+import svgutils.compose as sc
 from svgutils.compose import *
 from nose.tools import ok_, assert_almost_equal
 from svgutils.transform import SVG, XLINK
 import codecs
 import hashlib
+
+
+def test_embedded_svg():
+    fig = sc.Figure("5cm", "5cm",
+         sc.SVG('examples/files/svg_logo.svg')
+        )
+    poly = fig.root.find(SVG+"polygon")
+    ok_(poly.id, "V")
+ 
 
 def test_embedded_image():
     lion_jpg_md5 = 'f4a7c2a05f2acefa50cbd75a32d2733c'
