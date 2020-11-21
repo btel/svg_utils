@@ -64,9 +64,9 @@ class FigureElement(object):
 
             If an x/y angle is given as zero degrees, that transformation is omitted.
         """
-        if x is not 0:
+        if x != 0:
             self.skew_x(x)
-        if y is not 0:
+        if y != 0:
             self.skew_y(y)
 
         return self
