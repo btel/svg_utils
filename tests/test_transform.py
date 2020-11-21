@@ -40,5 +40,5 @@ def test_scale_xy():
     svg_fig = transform.fromstring(circle)
     group = svg_fig.getroot()
 
-    group.scale_xy(0, 30)
+    group.scale(0, 30)
     ok_('scale(0' in group.root.get('transform'))
