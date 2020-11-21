@@ -30,20 +30,6 @@ CONFIG = {'svg.file_path': '.',
 class Element(_transform.FigureElement):
     """Base class for new SVG elements."""
 
-    def scale(self, factor):
-        """Scale SVG element.
-
-        Parameters
-        ----------
-        factor : float
-            The scaling factor.
-
-            Factor > 1 scales up, factor < 1 scales down.
-        """
-
-        self.moveto(0, 0, factor)
-        return self
-
     def rotate(self, angle, x=0, y=0):
         """Rotate element by given angle around given pivot.
 
@@ -75,7 +61,7 @@ class Element(_transform.FigureElement):
         .. [1] W3C SVG specification:
            https://www.w3.org/TR/SVG/coords.html#Units
         """
-        self.moveto(x, y, 1)
+        self.moveto(x, y)
         return self
 
     def find_id(self, element_id):
