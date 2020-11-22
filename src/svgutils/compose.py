@@ -129,18 +129,28 @@ class SVG(Element):
                 w, h = svg.get_size()
                 svg.set_size((w.replace('pt', ''), h.replace('pt', '')))
             super(SVG, self).__init__(svg.getroot().root)
-            self._width = Unit(svg.width).to('px')
-            self._height = Unit(svg.height).to('px')
+
+            # if height/width is in % units, we can't store the absolute values
+            if svg.width.endswith("%"):
+                self._width = None
+            else:
+                self._width = Unit(svg.width).to('px')
+            if svg.height.endswith("%"):
+                self._height = None
+            else:
+                self._height = Unit(svg.height).to('px')
 
     @property
     def width(self):
         """Get width of the svg file in px"""
-        return self._width.value
+        if self._width:
+            return self._width.value
 
     @property
     def height(self):
         """Get height of the svg file in px"""
-        return self._height.value
+        if self._height:
+            return self._height.value
 
 
 class MplFigure(SVG):
