@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#coding=utf-8
+# coding=utf-8
 
 from svgutils import transform
 from nose.tools import ok_
@@ -14,15 +14,18 @@ circle = """<?xml version="1.0" standalone="no"?>
 </svg> 
 """
 
+
 def test_get_size():
     svg_fig = transform.fromstring(circle)
     w, h = svg_fig.get_size()
-    ok_((w=='150') & (h=='50'))
+    ok_((w == "150") & (h == "50"))
+
 
 def test_group_class():
     svg_fig = transform.fromstring(circle)
     group = svg_fig.getroot()
-    ok_((group.root.attrib['class'] == 'main'))
+    ok_((group.root.attrib["class"] == "main"))
+
 
 def test_skew():
     svg_fig = transform.fromstring(circle)
@@ -30,15 +33,16 @@ def test_skew():
 
     # Test skew in y-axis
     group.skew(0, 30)
-    ok_('skewY(30' in group.root.get('transform'))
+    ok_("skewY(30" in group.root.get("transform"))
 
     # Test skew in x-axis
     group.skew(30, 0)
-    ok_('skewX(30' in group.root.get('transform'))
+    ok_("skewX(30" in group.root.get("transform"))
+
 
 def test_scale_xy():
     svg_fig = transform.fromstring(circle)
     group = svg_fig.getroot()
 
     group.scale(0, 30)
-    ok_('scale(0' in group.root.get('transform'))
+    ok_("scale(0" in group.root.get("transform"))
