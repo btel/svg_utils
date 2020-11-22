@@ -8,11 +8,11 @@ import hashlib
 
 def test_embedded_svg():
     svg = sc.SVG('examples/files/svg_logo.svg')
-    fig = sc.Figure("5cm", "5cm",
-        svg
-        )
+    fig = sc.Figure("5cm", "5cm", svg)
     poly = fig.root.find(".//{}polygon".format(SVG))
+
     ok_(poly.get("id") == 'V')
+
     ok_(svg.height is None)
     ok_(svg.width is None)
  
