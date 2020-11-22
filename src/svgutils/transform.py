@@ -108,9 +108,6 @@ class FigureElement(object):
             y-axis scaling factor. To scale down y < 1, scale up y > 1.
 
         """
-        # self.root.set("transform", "%s scale(%f %f)" %
-        #               (self.root.get("transform") or '',
-        #                x, y if y is not None else ''))
         self.moveto(0, 0, x, y)
         return self
 
