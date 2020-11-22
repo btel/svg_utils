@@ -21,19 +21,23 @@ class FigureElement(object):
 
         self.root = xml_element
 
-    def moveto(self, x, y, scale=1):
+    def moveto(self, x, y, scale_x=1, scale_y=None):
         """Move and scale element.
 
         Parameters
         ----------
         x, y : float
              displacement in x and y coordinates in user units ('px').
-        scale : float
-             scaling factor. To scale down scale < 1,  scale up scale > 1.
-             For no scaling scale = 1.
+        scale_x : float
+             x-direction scaling factor. To scale down scale_x < 1,  scale up scale_x > 1.
+        scale_y : (optional) float
+             y-direction scaling factor. To scale down scale_y < 1,  scale up scale_y > 1.
+             If set to default (None), then scale_y=scale_x.
         """
-        self.root.set("transform", "translate(%s, %s) scale(%s) %s" %
-                      (x, y, scale, self.root.get("transform") or ''))
+        if scale_y is None:
+            scale_y = scale_x
+        self.root.set("transform", "translate(%s, %s) scale(%s %s) %s" %
+                      (x, y, scale_x, scale_y, self.root.get("transform") or ''))
 
     def rotate(self, angle, x=0, y=0):
         """Rotate element by given angle around given pivot.
@@ -60,9 +64,9 @@ class FigureElement(object):
 
             If an x/y angle is given as zero degrees, that transformation is omitted.
         """
-        if x is not 0:
+        if x != 0:
             self.skew_x(x)
-        if y is not 0:
+        if y != 0:
             self.skew_y(y)
 
         return self
@@ -91,7 +95,7 @@ class FigureElement(object):
                       (self.root.get("transform") or '', y))
         return self
 
-    def scale_xy(self, x=0, y=None):
+    def scale(self, x=0, y=None):
         """Scale element separately across the two axes x and y.
             If y is not provided, it is assumed equal to x (according to the
             W3 specification).
@@ -104,9 +108,9 @@ class FigureElement(object):
             y-axis scaling factor. To scale down y < 1, scale up y > 1.
 
         """
-        self.root.set("transform", "%s scale(%f %f)" %
-                      (self.root.get("transform") or '',
-                       x, y if y is not None else ''))
+        self.moveto(0, 0, x, y)
+        return self
+
 
     def __getitem__(self, i):
         return FigureElement(self.root.getchildren()[i])
