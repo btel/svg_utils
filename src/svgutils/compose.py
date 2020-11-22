@@ -18,13 +18,16 @@ import os
 import re
 
 from svgutils import transform as _transform
-CONFIG = {'svg.file_path': '.',
-          'figure.save_path' : '.',
-          'image.file_path': '.',
-          'text.position': (0, 0),
-          'text.size': 8,
-          'text.weight': 'normal',
-          'text.font': 'Verdana'}
+
+CONFIG = {
+    "svg.file_path": ".",
+    "figure.save_path": ".",
+    "image.file_path": ".",
+    "text.position": (0, 0),
+    "text.size": 8,
+    "text.weight": "normal",
+    "text.font": "Verdana",
+}
 
 
 class Element(_transform.FigureElement):
@@ -91,8 +94,7 @@ class Element(_transform.FigureElement):
         -------
         a new `Panel` object which contains all the found elements.
         """
-        elements = [_transform.FigureElement.find_id(self, eid)
-                    for eid in element_ids]
+        elements = [_transform.FigureElement.find_id(self, eid) for eid in element_ids]
         return Panel(*elements)
 
 
@@ -109,22 +111,22 @@ class SVG(Element):
 
     def __init__(self, fname=None, fix_mpl=False):
         if fname:
-            fname = os.path.join(CONFIG['svg.file_path'], fname)
+            fname = os.path.join(CONFIG["svg.file_path"], fname)
             svg = _transform.fromfile(fname)
             if fix_mpl:
                 w, h = svg.get_size()
-                svg.set_size((w.replace('pt', ''), h.replace('pt', '')))
+                svg.set_size((w.replace("pt", ""), h.replace("pt", "")))
             super(SVG, self).__init__(svg.getroot().root)
 
             # if height/width is in % units, we can't store the absolute values
             if svg.width.endswith("%"):
                 self._width = None
             else:
-                self._width = Unit(svg.width).to('px')
+                self._width = Unit(svg.width).to("px")
             if svg.height.endswith("%"):
                 self._height = None
             else:
-                self._height = Unit(svg.height).to('px')
+                self._height = Unit(svg.height).to("px")
 
     @property
     def width(self):
@@ -166,11 +168,12 @@ class Image(Element):
     fname : str
         full path to the file
     """
+
     def __init__(self, width, height, fname):
-        fname = os.path.join(CONFIG['image.file_path'], fname)
+        fname = os.path.join(CONFIG["image.file_path"], fname)
         _, fmt = os.path.splitext(fname)
         fmt = fmt.lower()[1:]
-        with open(fname, 'rb') as fid:
+        with open(fname, "rb") as fid:
             img = _transform.ImageElement(fid, width, height, fmt)
         self.root = img.root
 
@@ -191,12 +194,15 @@ class Text(Element):
     font : str, optional
        Font family.
     """
+
     def __init__(self, text, x=None, y=None, **kwargs):
-        params = {'size': CONFIG['text.size'],
-                  'weight': CONFIG['text.weight'],
-                  'font': CONFIG['text.font']}
+        params = {
+            "size": CONFIG["text.size"],
+            "weight": CONFIG["text.weight"],
+            "font": CONFIG["text.font"],
+        }
         if x is None or y is None:
-            x, y = CONFIG['text.position']
+            x, y = CONFIG["text.position"]
         params.update(kwargs)
         element = _transform.TextElement(x, y, text, **params)
         Element.__init__(self, element.root)
@@ -217,6 +223,7 @@ class Panel(Element):
     -----
     The grouped elements need to be properly arranged in scale and position.
     """
+
     def __init__(self, *svgelements):
         element = _transform.GroupElement(svgelements)
         Element.__init__(self, element.root)
@@ -238,7 +245,8 @@ class Line(Element):
     color : str, optional
         Line color. Any of the HTML/CSS color definitions are allowed.
     """
-    def __init__(self, points, width=1, color='black'):
+
+    def __init__(self, points, width=1, color="black"):
         element = _transform.LineElement(points, width=width, color=color)
         Element.__init__(self, element.root)
 
@@ -260,6 +268,7 @@ class Grid(Element):
     -----
     This element is mainly useful for manual placement of the elements.
     """
+
     def __init__(self, dx, dy, size=8):
         self.size = size
         lines = self._gen_grid(dx, dy)
@@ -272,16 +281,14 @@ class Grid(Element):
         lines = []
         txt = []
         while x < xmax:
-            lines.append(_transform.LineElement([(x, 0), (x, ymax)],
-                                                width=width))
-            txt.append(_transform.TextElement(x, dy/2, str(x), size=self.size))
+            lines.append(_transform.LineElement([(x, 0), (x, ymax)], width=width))
+            txt.append(_transform.TextElement(x, dy / 2, str(x), size=self.size))
             x += dx
         while y < ymax:
-            lines.append(_transform.LineElement([(0, y), (xmax, y)],
-                                                width=width))
+            lines.append(_transform.LineElement([(0, y), (xmax, y)], width=width))
             txt.append(_transform.TextElement(0, y, str(y), size=self.size))
             y += dy
-        return lines+txt
+        return lines + txt
 
 
 class Figure(Panel):
@@ -294,6 +301,7 @@ class Figure(Panel):
     width, height : float or str
         Figure size. If unit is not given, user units (px) are assumed.
     """
+
     def __init__(self, width, height, *svgelements):
         Panel.__init__(self, *svgelements)
         self.width = Unit(width)
@@ -309,7 +317,7 @@ class Figure(Panel):
         """
         element = _transform.SVGFigure(self.width, self.height)
         element.append(self)
-        element.save(os.path.join(CONFIG['figure.save_path'], fname))
+        element.save(os.path.join(CONFIG["figure.save_path"], fname))
 
     def tostr(self):
         """Export SVG as a string"""
@@ -319,7 +327,7 @@ class Figure(Panel):
         return svgstr
 
     def _repr_svg_(self):
-        return self.tostr().decode('ascii')
+        return self.tostr().decode("ascii")
 
     def tile(self, ncols, nrows):
         """Automatically tile the panels of the figure.
@@ -338,11 +346,11 @@ class Figure(Panel):
         ncols * nrows must be larger or equal to number of
         elements, otherwise some elements will go outside the figure borders.
         """
-        dx = (self.width/ncols).to('px').value
-        dy = (self.height/nrows).to('px').value
+        dx = (self.width / ncols).to("px").value
+        dy = (self.height / nrows).to("px").value
         ix, iy = 0, 0
         for el in self:
-            el.move(dx*ix, dy*iy)
+            el.move(dx * ix, dy * iy)
             ix += 1
             if ix >= ncols:
                 ix = 0
@@ -360,18 +368,15 @@ class Unit:
     measure : str
         value with unit (for example, '2cm')
     """
-    per_inch = {'px': 90,
-                'cm': 2.54,
-                'mm': 25.4,
-                'pt': 72.0
-                }
+
+    per_inch = {"px": 90, "cm": 2.54, "mm": 25.4, "pt": 72.0}
 
     def __init__(self, measure):
         try:
             self.value = float(measure)
-            self.unit = 'px'
+            self.unit = "px"
         except ValueError:
-            m = re.match('([0-9]+\.?[0-9]*)([a-z]+)', measure)
+            m = re.match("([0-9]+\.?[0-9]*)([a-z]+)", measure)
             value, unit = m.groups()
             self.value = float(value)
             self.unit = unit
@@ -390,7 +395,7 @@ class Unit:
             new Unit object with the requested unit and computed value.
         """
         u = Unit("0cm")
-        u.value = self.value/self.per_inch[self.unit]*self.per_inch[unit]
+        u.value = self.value / self.per_inch[self.unit] * self.per_inch[unit]
         u.unit = unit
         return u
 
@@ -407,7 +412,7 @@ class Unit:
         return u
 
     def __truediv__(self, number):
-        return self * (1./number)
+        return self * (1.0 / number)
 
     def __div__(self, number):
-        return self * (1./number)
+        return self * (1.0 / number)
