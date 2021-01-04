@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name="svgutils",
-    version="0.3.1",
+    version="0.3.2",
     description="Python SVG editor",
     long_description="""This is an utility package that helps to edit and
       concatenate SVG files. It is especially directed at scientists preparing
@@ -30,5 +30,5 @@ setup(
     ],
     package_dir={"": "src"},
     install_requires=["lxml"],
-    download_url="https://github.com/btel/svg_utils/archive/v0.3.0.tar.gz",
+    download_url="https://github.com/btel/svg_utils/archive/v0.3.2.tar.gz",
 )
