@@ -239,11 +239,17 @@ class SVGFigure(object):
         self._height = 0
 
         if width:
-            self._width = width.value
-            self.width = width
+            try:
+                # width is an instance of Unit
+                self._width = width.value
+            except AttributeError:
+                # int or str
+                self._width = width
         if height:
-            self._height = height.value
-            self.height = height
+            try:
+                self._height = height.value
+            except AttributeError:
+                self._height = height
 
     @property
     def width(self):

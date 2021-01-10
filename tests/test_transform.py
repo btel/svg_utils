@@ -2,6 +2,7 @@
 # coding=utf-8
 
 from svgutils import transform
+from svgutils.compose import Unit
 from nose.tools import ok_
 
 circle = """<?xml version="1.0" standalone="no"?>
@@ -46,3 +47,17 @@ def test_scale_xy():
 
     group.scale(0, 30)
     ok_("scale(0" in group.root.get("transform"))
+
+
+def test_create_svg_figure():
+    svg_fig = transform.SVGFigure()
+    assert "svg" in svg_fig.to_str().decode("ascii")
+
+    svg_fig = transform.SVGFigure(Unit("2px"), Unit("2px"))
+    assert "svg" in svg_fig.to_str().decode("ascii")
+
+    svg_fig = transform.SVGFigure(2, 3)
+    assert "svg" in svg_fig.to_str().decode("ascii")
+
+    svg_fig = transform.SVGFigure("2", "3")
+    assert "svg" in svg_fig.to_str().decode("ascii")
