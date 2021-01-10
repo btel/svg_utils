@@ -57,3 +57,6 @@ def test_create_svg_figure():
 
     svg_fig = transform.SVGFigure(2, 3)
     assert "svg" in svg_fig.to_str().decode("ascii")
+
+    svg_fig = transform.SVGFigure("2", "3")
+    assert "svg" in svg_fig.to_str().decode("ascii")
