@@ -48,6 +48,7 @@ def test_scale_xy():
     group.scale(0, 30)
     ok_("scale(0" in group.root.get("transform"))
 
+
 def test_create_svg_figure():
     svg_fig = transform.SVGFigure()
     assert "svg" in svg_fig.to_str().decode("ascii")
