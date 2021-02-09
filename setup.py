@@ -3,9 +3,11 @@
 
 from setuptools import setup
 
+version_str = "0.3.3"
+
 setup(
     name="svgutils",
-    version="0.3.2",
+    version=version_str,
     description="Python SVG editor",
     long_description="""This is an utility package that helps to edit and
       concatenate SVG files. It is especially directed at scientists preparing
@@ -30,5 +32,7 @@ setup(
     ],
     package_dir={"": "src"},
     install_requires=["lxml"],
-    download_url="https://github.com/btel/svg_utils/archive/v0.3.2.tar.gz",
+    download_url="https://github.com/btel/svg_utils/archive/v{}.tar.gz".format(
+        version_str
+    ),
 )
