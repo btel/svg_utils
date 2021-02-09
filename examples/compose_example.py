@@ -15,4 +15,4 @@ Figure(
         120,
         "lion.jpeg",
     ).move(120, 0),
-).save("test.svg")
+).save("compose_example.svg")

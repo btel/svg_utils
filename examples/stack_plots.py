@@ -17,5 +17,4 @@ plt.plot([2, 1])
 layout.add_figure(from_mpl(fig1))
 layout.add_figure(from_mpl(fig2))
 
-print from_mpl(fig1).get_size()
 layout.save("stack_plots.svg")
