@@ -3,7 +3,7 @@
 
 from setuptools import setup
 
-version_str = "0.3.3"
+version_str = "0.3.4"
 
 setup(
     name="svgutils",
