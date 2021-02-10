@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
+from tempfile import NamedTemporaryFile
 
 from svgutils import transform
 from svgutils.compose import Unit
@@ -61,3 +62,16 @@ def test_create_svg_figure():
 
     svg_fig = transform.SVGFigure("2", "3")
     assert "svg" in svg_fig.to_str().decode("ascii")
+
+
+def test_svg_figure_writes_width_height_and_view_box():
+    svg_fig = transform.SVGFigure(Unit("400mm"), Unit("300mm"))
+
+    with NamedTemporaryFile() as f1:
+        svg_fig.save(f1.name)
+        with open(f1.name) as f2:
+            written_content = f2.read()
+
+    assert 'width="400.0mm"' in written_content
+    assert 'height="300.0mm"' in written_content
+    assert 'viewBox="0 0 400.0 300.0"' in written_content
