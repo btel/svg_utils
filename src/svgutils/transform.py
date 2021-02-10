@@ -240,14 +240,14 @@ class SVGFigure(object):
 
         if width:
             try:
-                # width is an instance of Unit
-                self._width = width.value
+                self.width = width  # this goes to @width.setter a few lines down
             except AttributeError:
                 # int or str
                 self._width = width
+
         if height:
             try:
-                self._height = height.value
+                self.height = height  # this goes to @height.setter a few lines down
             except AttributeError:
                 self._height = height
 
