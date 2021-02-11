@@ -12,7 +12,7 @@ jobs:
     name: Run the test suite
     strategy:
       matrix:
-        python-version: [2.7, 3.5, 3.9]  # no explicit need for 3.6, 3.7, 3.8
+        python-version: [3.6, 3.9]  # no explicit need for 3.7, 3.8
         runs-on: [macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.runs-on }}
     steps:
