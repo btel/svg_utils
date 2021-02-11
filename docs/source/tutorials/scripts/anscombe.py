@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 
 Edward Tufte uses this example from Anscombe to show 4 datasets of x

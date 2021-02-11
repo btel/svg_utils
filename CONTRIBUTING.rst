@@ -18,7 +18,7 @@ This project uses [black](https://github.com/psf/black) for automatically format
 You can run the check and formatting hooks using pre-commit:
 
 ```
-pip install pre-commit
+pip3 install pre-commit
 pre-commit run --all
 ```
 
