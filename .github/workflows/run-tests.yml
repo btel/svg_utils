@@ -22,9 +22,9 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install runtime dependencies
       run: |
-        python --version
-        pip install --user -r requirements.txt
-        pip install --user -e .
+        python3 --version
+        pip3 install --user -r requirements.txt
+        pip3 install --user -e .
         echo "PATH=${HOME}/.local/bin:${PATH}" >> "${GITHUB_ENV}"
     - name: Run the test suite
       env:

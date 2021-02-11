@@ -10,11 +10,11 @@ Install
 From PyPI
 `````````
 
-You can install `svgutils` from Python Package Index (PyPI) using the `pip` utility::
+You can install `svgutils` from Python Package Index (PyPI) using the `pip3` utility::
 
-   pip install svgutils --user
+   pip3 install svgutils --user
 
-Note that the `pip` will attempt to install `lxml` library if it is not already installed.
+Note that the `pip3` will attempt to install `lxml` library if it is not already installed.
 For the installation to be sucessful, you need development libraries of `libxml2` and `libxslt1`.
 On Ubuntu and other Debian-derived Linux distributions you can install them via::
 
@@ -39,9 +39,9 @@ From sources
 
 To install system-wide (needs administrator privilages)::
 
-   python setup.py install
+   python3 setup.py install
 
 To install locally (do not forget to add
-``$HOME/python/lib/python2.6/site-packages/`` to your Python path)::
+``$HOME/python/lib/python3.6/site-packages/`` to your Python path)::
 
-   python setup.py install --user
+   python3 setup.py install --user
