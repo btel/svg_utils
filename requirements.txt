@@ -1,3 +1,4 @@
+nose
 numpydoc
 sphinx
 sphinx_rtd_theme

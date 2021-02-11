@@ -1,5 +1,5 @@
-.. image:: https://travis-ci.org/btel/svg_utils.svg?branch=master
-    :target: https://travis-ci.org/btel/svg_utils
+.. image:: https://github.com/btel/svg_utils/workflows/Run%20the%20test%20suite/badge.svg
+    :target: https://github.com/btel/svg_utils/actions
 
 .. image:: https://readthedocs.org/projects/svgutils/badge/?version=latest
     :target: http://svgutils.readthedocs.io/en/latest/?badge=latest
