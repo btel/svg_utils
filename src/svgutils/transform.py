@@ -258,7 +258,7 @@ class SVGFigure(object):
 
     @width.setter
     def width(self, value):
-        self._width = value.value
+        self._width = value
         self.root.set("width", str(value))
         self.root.set("viewBox", "0 0 %s %s" % (self._width, self._height))
 
@@ -269,7 +269,7 @@ class SVGFigure(object):
 
     @height.setter
     def height(self, value):
-        self._height = value.value
+        self._height = value
         self.root.set("height", str(value))
         self.root.set("viewBox", "0 0 %s %s" % (self._width, self._height))
 
