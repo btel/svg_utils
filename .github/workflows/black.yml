@@ -9,5 +9,5 @@ jobs:
       - uses: actions/checkout@v3.0.2
       - uses: actions/setup-python@v4.2.0
       - uses: psf/black@22.8.0
-        env:
-          INPUT_BLACK_ARGS: --target-version py36
+        with:
+          options: --check --diff --target-version py36 --exclude ^/docs/source/conf\.py$
