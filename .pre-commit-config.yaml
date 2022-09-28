@@ -6,3 +6,8 @@ repos:
         language_version: python3
         args: ['--target-version', 'py36']
         exclude: '^docs/source/conf\.py$'
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
