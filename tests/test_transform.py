@@ -76,6 +76,7 @@ def test_svg_figure_writes_width_height_and_view_box():
     assert 'height="300.0mm"' in written_content
     assert 'viewBox="0 0 400.0 300.0"' in written_content
 
+
 def test_svg_figure__width_height_tostr():
 
     svg_fig = transform.SVGFigure("400px", "300px")
