@@ -2,9 +2,10 @@
 # coding=utf-8
 from tempfile import NamedTemporaryFile
 
+from nose.tools import ok_
+
 from svgutils import transform
 from svgutils.compose import Unit
-from nose.tools import ok_
 
 circle = """<?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"

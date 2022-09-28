@@ -1,6 +1,7 @@
-from lxml import etree
-from copy import deepcopy
 import codecs
+from copy import deepcopy
+
+from lxml import etree
 
 try:
     from StringIO import StringIO

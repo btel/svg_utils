@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
+from svgutils.templates import ColumnLayout, VerticalLayout
 from svgutils.transform import fromfile
-from svgutils.templates import VerticalLayout, ColumnLayout
-
 
 layout = ColumnLayout(5)
 

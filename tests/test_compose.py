@@ -1,9 +1,11 @@
-import svgutils.compose as sc
-from svgutils.compose import *
-from nose.tools import ok_, assert_almost_equal
-from svgutils.transform import SVG, XLINK
 import codecs
 import hashlib
+
+from nose.tools import assert_almost_equal, ok_
+
+import svgutils.compose as sc
+from svgutils.compose import *
+from svgutils.transform import SVG, XLINK
 
 
 def test_embedded_svg():

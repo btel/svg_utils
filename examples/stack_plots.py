@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
-from svgutils.transform import from_mpl
 from svgutils.templates import VerticalLayout
+from svgutils.transform import from_mpl
 
 layout = VerticalLayout()
 

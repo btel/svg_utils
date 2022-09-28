@@ -1,5 +1,6 @@
-import svgutils.transform as sg
 import sys
+
+import svgutils.transform as sg
 
 # create new SVG figure
 fig = sg.SVGFigure("16cm", "6.5cm")

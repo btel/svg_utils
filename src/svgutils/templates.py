@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-from svgutils.transform import SVGFigure, GroupElement
+from svgutils.transform import GroupElement, SVGFigure
 
 
 class BaseTemplate(SVGFigure):
