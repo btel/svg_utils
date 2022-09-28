@@ -7,6 +7,8 @@ try:
 except ImportError:
     from io import StringIO
 
+from svgutils.common import Unit
+
 SVG_NAMESPACE = "http://www.w3.org/2000/svg"
 XLINK_NAMESPACE = "http://www.w3.org/1999/xlink"
 SVG = "{%s}" % SVG_NAMESPACE
@@ -239,17 +241,10 @@ class SVGFigure(object):
         self._height = 0
 
         if width:
-            try:
-                self.width = width  # this goes to @width.setter a few lines down
-            except AttributeError:
-                # int or str
-                self._width = width
+            self.width = width  # this goes to @width.setter a few lines down
 
         if height:
-            try:
-                self.height = height  # this goes to @height.setter a few lines down
-            except AttributeError:
-                self._height = height
+            self.height = height  # this goes to @height.setter a few lines down
 
     @property
     def width(self):
@@ -258,6 +253,8 @@ class SVGFigure(object):
 
     @width.setter
     def width(self, value):
+        if not isinstance(value, Unit):
+            value = Unit(value)
         self._width = value.value
         self.root.set("width", str(value))
         self.root.set("viewBox", "0 0 %s %s" % (self._width, self._height))
@@ -269,6 +266,8 @@ class SVGFigure(object):
 
     @height.setter
     def height(self, value):
+        if not isinstance(value, Unit):
+            value = Unit(value)
         self._height = value.value
         self.root.set("height", str(value))
         self.root.set("viewBox", "0 0 %s %s" % (self._width, self._height))
