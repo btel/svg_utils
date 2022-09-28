@@ -15,7 +15,6 @@ Features:
 """
 
 import os
-import re
 
 from svgutils import transform as _transform
 from svgutils.common import Unit
