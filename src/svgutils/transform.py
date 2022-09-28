@@ -7,13 +7,13 @@ try:
 except ImportError:
     from io import StringIO
 
+from svgutils.common import Unit
+
 SVG_NAMESPACE = "http://www.w3.org/2000/svg"
 XLINK_NAMESPACE = "http://www.w3.org/1999/xlink"
 SVG = "{%s}" % SVG_NAMESPACE
 XLINK = "{%s}" % XLINK_NAMESPACE
 NSMAP = {None: SVG_NAMESPACE, "xlink": XLINK_NAMESPACE}
-
-from svgutils.common import Unit
 
 
 class FigureElement(object):
