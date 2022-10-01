@@ -119,11 +119,11 @@ class SVG(Element):
             super(SVG, self).__init__(svg.getroot().root)
 
             # if height/width is in % units, we can't store the absolute values
-            if svg.width.endswith("%"):
+            if svg.width is None or svg.width.endswith("%"):
                 self._width = None
             else:
                 self._width = Unit(svg.width).to("px")
-            if svg.height.endswith("%"):
+            if svg.height is None or svg.height.endswith("%"):
                 self._height = None
             else:
                 self._height = Unit(svg.height).to("px")
