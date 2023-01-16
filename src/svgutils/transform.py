@@ -329,9 +329,12 @@ class SVGFigure(object):
         """Get figure size"""
         return self.root.get("width"), self.root.get("height")
 
-    def set_size(self, size):
+    def set_size(self, size_x, size_y=None):
         """Set figure size"""
-        w, h = size
+        if size_y == None:
+            w, h = size_x, size_x
+        else:
+            w, h = size_x, size_y
         self.root.set("width", w)
         self.root.set("height", h)
 
