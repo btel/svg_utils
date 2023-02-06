@@ -8,6 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3.0.2
       - uses: actions/setup-python@v4.2.0
-      - uses: psf/black@22.8.0
+      - uses: psf/black@23.1.0
         with:
           options: --check --diff --target-version py36 --exclude ^/docs/source/conf\.py$
