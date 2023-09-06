@@ -1,7 +1,7 @@
 import codecs
 import hashlib
 
-from nose.tools import assert_almost_equal, ok_
+from nose.tools import assert_almost_equal, assert_raises, ok_
 
 import svgutils.compose as sc
 from svgutils.compose import *
@@ -58,6 +58,11 @@ def test_units():
     length = Unit("10.5cm")
     assert length.unit == "cm"
     assert length.value == 10.5
+
+    with assert_raises(ValueError) as cm:
+        Unit("x")
+    ex = cm.exception
+    assert str(ex) == "Could not parse unit in 'x'"
 
 
 def test_unit_div():
