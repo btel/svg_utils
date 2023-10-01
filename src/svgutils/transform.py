@@ -21,7 +21,6 @@ class FigureElement(object):
     """Base class representing single figure element"""
 
     def __init__(self, xml_element, defs=None):
-
         self.root = xml_element
 
     def moveto(self, x, y, scale_x=1, scale_y=None):
