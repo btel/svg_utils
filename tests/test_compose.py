@@ -33,7 +33,6 @@ def test_embedded_image():
 
 
 def test_text():
-
     fig = Figure("5cm", "5cm", Text("lion"))
     txt = fig.root.find(SVG + "text")
 

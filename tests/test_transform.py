@@ -79,7 +79,6 @@ def test_svg_figure_writes_width_height_and_view_box():
 
 
 def test_svg_figure__width_height_tostr():
-
     svg_fig = transform.SVGFigure("400px", "300px")
     assert b'height="300.0px"' in svg_fig.to_str()
     assert b'width="400.0px"' in svg_fig.to_str()
