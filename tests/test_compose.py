@@ -1,7 +1,7 @@
 import codecs
 import hashlib
 
-from nose.tools import assert_almost_equal, ok_
+import pytest
 
 import svgutils.compose as sc
 from svgutils.compose import *
@@ -13,10 +13,10 @@ def test_embedded_svg():
     fig = sc.Figure("5cm", "5cm", svg)
     poly = fig.root.find(".//{}polygon".format(SVG))
 
-    ok_(poly.get("id") == "V")
+    assert poly.get("id") == "V"
 
-    ok_(svg.height is None)
-    ok_(svg.width is None)
+    assert svg.height is None
+    assert svg.width is None
 
 
 def test_embedded_image():
@@ -29,7 +29,7 @@ def test_embedded_image():
     base64 = codecs.decode(image_data, "base64")
     md5 = hashlib.md5(base64).hexdigest()
 
-    ok_(lion_jpg_md5 == md5)
+    assert lion_jpg_md5 == md5
 
 
 def test_text():
@@ -37,7 +37,7 @@ def test_text():
     fig = Figure("5cm", "5cm", Text("lion"))
     txt = fig.root.find(SVG + "text")
 
-    ok_(txt.text == "lion")
+    assert txt.text == "lion"
 
 
 def test_no_unit():
@@ -66,8 +66,8 @@ def test_unit_div():
     length = Unit("10cm")
     shorter_length = length / 2
     assert length.unit == "cm"
-    assert_almost_equal(shorter_length.value, 5)
+    assert pytest.approx(shorter_length.value) == 5
 
     shorter_length = length / 2.0
     assert length.unit == "cm"
-    assert_almost_equal(shorter_length.value, 5.0)
+    assert pytest.approx(shorter_length.value) == 5.0
