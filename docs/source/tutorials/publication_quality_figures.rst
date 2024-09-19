@@ -59,7 +59,7 @@ which completely resides on Python tools is given here.
    <https://github.com/btel/svg_utils>`_.
 
    The basic operations are similar to what one would do in a vector
-   graphics editor but using scripts instead of a mouse cursor. This reduces repitition as one will not have to repeat the process when,
+   graphics editor but using scripts instead of a mouse cursor. This reduces repetition as one will not have to repeat the process when,
    for some reason, one needs to modify the plots they generated
    with matplotlib (to add more data or modify the
    parameters of the existing analysis, for example).

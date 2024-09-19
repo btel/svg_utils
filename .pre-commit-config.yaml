@@ -11,3 +11,9 @@ repos:
     rev: 5.10.1
     hooks:
       - id: isort
+
+  - repo: https://github.com/codespell-project/codespell
+    # Configuration for codespell is in .codespellrc
+    rev: v2.3.0
+    hooks:
+    - id: codespell
