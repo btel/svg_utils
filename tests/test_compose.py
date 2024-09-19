@@ -61,7 +61,7 @@ def test_units():
 
 
 def test_unit_div():
-    """test divding a number with unit by a number"""
+    """test dividing a number with unit by a number"""
 
     length = Unit("10cm")
     shorter_length = length / 2

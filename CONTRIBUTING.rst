@@ -4,7 +4,7 @@ Make sure to included the following with your PR:
 
 * short description of the contribution (in the Github form)
 * unit tests for the code that you implemented
-* docummentation of new functions, classes etc.
+* documentation of new functions, classes etc.
 
 You can also fix some the issues in the github tracker. 
 If you decide to work on it, make sure to add a comment
