@@ -17,7 +17,7 @@ class Unit:
             self.value = float(measure)
             self.unit = "px"
         except ValueError:
-            m = re.match("([0-9]+\.?[0-9]*)([a-z]+)", measure)
+            m = re.match(r"([0-9]+\.?[0-9]*)([a-z]+)", measure)
             value, unit = m.groups()
             self.value = float(value)
             self.unit = unit
@@ -41,10 +41,10 @@ class Unit:
         return u
 
     def __str__(self):
-        return "{}{}".format(self.value, self.unit)
+        return f"{self.value}{self.unit}"
 
     def __repr__(self):
-        return "Unit({})".format(str(self))
+        return f"Unit({self})"
 
     def __mul__(self, number):
         u = Unit("0cm")
