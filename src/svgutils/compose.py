@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# coding=utf-8
 """SVG definitions designed for easy SVG composing
 
 Features:
@@ -44,7 +43,7 @@ class Element(_transform.FigureElement):
             pivot coordinates in user coordinate system (defaults to top-left
             corner of the figure)
         """
-        super(Element, self).rotate(angle, x, y)
+        super().rotate(angle, x, y)
         return self
 
     def move(self, x, y):
@@ -116,7 +115,7 @@ class SVG(Element):
             if fix_mpl:
                 w, h = svg.get_size()
                 svg.set_size((w.replace("pt", ""), h.replace("pt", "")))
-            super(SVG, self).__init__(svg.getroot().root)
+            super().__init__(svg.getroot().root)
 
             # if height/width is in % units, we can't store the absolute values
             if svg.width.endswith("%"):
