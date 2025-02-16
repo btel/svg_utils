@@ -37,7 +37,7 @@ content-type = "text/plain"
 
 [project.urls]
 Homepage = "https://svgutils.readthedocs.io"
-Download = "https://github.com/btel/svg_utils/archive/v0.3.4.tar.gz"
+"Source Code" = "https://github.com/btel/svg_utils/"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
