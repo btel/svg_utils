@@ -126,7 +126,7 @@ class FigureElement(object):
 
     def copy(self):
         """Make a copy of the element"""
-        return deepcopy(self.root)
+        return deepcopy(self)
 
     def tostr(self):
         """String representation of the element"""
