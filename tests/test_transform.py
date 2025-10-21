@@ -2,8 +2,6 @@
 # coding=utf-8
 from tempfile import NamedTemporaryFile
 
-from nose.tools import ok_
-
 from svgutils import transform
 from svgutils.compose import Unit
 
@@ -21,13 +19,13 @@ circle = """<?xml version="1.0" standalone="no"?>
 def test_get_size():
     svg_fig = transform.fromstring(circle)
     w, h = svg_fig.get_size()
-    ok_((w == "150") & (h == "50"))
+    assert w == "150" and h == "50"
 
 
 def test_group_class():
     svg_fig = transform.fromstring(circle)
     group = svg_fig.getroot()
-    ok_((group.root.attrib["class"] == "main"))
+    assert group.root.attrib["class"] == "main"
 
 
 def test_skew():
@@ -36,11 +34,11 @@ def test_skew():
 
     # Test skew in y-axis
     group.skew(0, 30)
-    ok_("skewY(30" in group.root.get("transform"))
+    assert "skewY(30" in group.root.get("transform")
 
     # Test skew in x-axis
     group.skew(30, 0)
-    ok_("skewX(30" in group.root.get("transform"))
+    assert "skewX(30" in group.root.get("transform")
 
 
 def test_scale_xy():
@@ -48,7 +46,7 @@ def test_scale_xy():
     group = svg_fig.getroot()
 
     group.scale(0, 30)
-    ok_("scale(0" in group.root.get("transform"))
+    assert "scale(0" in group.root.get("transform")
 
 
 def test_create_svg_figure():
