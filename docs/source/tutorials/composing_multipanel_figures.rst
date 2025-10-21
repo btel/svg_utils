@@ -158,7 +158,7 @@ chained:
           )
 
 It's often difficult to arrange the figures correctly and it can involve mundane
-going back and fro between the code and generated SVG file. To ease the process
+going back and forth between the code and generated SVG file. To ease the process
 ``compose`` offers several helper objects: The ``Grid()`` object generates a grid of
 horizontal and vertical lines labelled with their position in pixel units. To
 add it simply list ``Grid()`` as one of ``Figure()`` elements:

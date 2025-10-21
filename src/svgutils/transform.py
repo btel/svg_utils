@@ -185,7 +185,7 @@ class TextElement(FigureElement):
 class ImageElement(FigureElement):
     """Inline image element.
 
-    Correspoonds to SVG ``<image>`` tag. Image data encoded as base64 string.
+    Corresponds to SVG ``<image>`` tag. Image data encoded as base64 string.
     """
 
     def __init__(self, stream, width, height, format="png"):
