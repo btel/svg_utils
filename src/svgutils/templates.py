@@ -22,7 +22,6 @@ class BaseTemplate(SVGFigure):
         SVGFigure.save(self, fname)
 
     def _generate_layout(self):
-
         for i, f in enumerate(self.figures):
             new_element = self._transform(f["root"], self.figures[:i])
             self.append(new_element)
@@ -50,7 +49,6 @@ class ColumnLayout(BaseTemplate):
         BaseTemplate.__init__(self)
 
     def _transform(self, element, transform_list):
-
         rows = 0
 
         if not transform_list:
