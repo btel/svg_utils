@@ -17,7 +17,7 @@ class Unit:
             self.value = float(measure)
             self.unit = "px"
         except ValueError:
-            m = re.match("([0-9]+\.?[0-9]*)([a-z]+)", measure)
+            m = re.match(r"([0-9]+\.?[0-9]*)([a-z]+)", measure)
             value, unit = m.groups()
             self.value = float(value)
             self.unit = unit
