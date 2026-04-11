@@ -8,6 +8,6 @@ repos:
         exclude: '^docs/source/conf\.py$'
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.10.1
+    rev: 8.0.1
     hooks:
       - id: isort
