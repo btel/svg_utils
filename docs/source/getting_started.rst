@@ -15,7 +15,7 @@ You can install `svgutils` from Python Package Index (PyPI) using the `pip3` uti
    pip3 install svgutils --user
 
 Note that the `pip3` will attempt to install `lxml` library if it is not already installed.
-For the installation to be sucessful, you need development libraries of `libxml2` and `libxslt1`.
+For the installation to be successful, you need development libraries of `libxml2` and `libxslt1`.
 On Ubuntu and other Debian-derived Linux distributions you can install them via::
 
    sudo apt-get install libxml2-dev libxslt-dev
